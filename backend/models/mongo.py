@@ -41,7 +41,7 @@ except Exception as e:
     )
     print(e)
 #
-db = client["Agrodb"]
+db = client[db_name]
 #
 # # Collections
 users_collection = db["users"]
