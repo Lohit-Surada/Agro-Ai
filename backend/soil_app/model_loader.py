@@ -1,20 +1,35 @@
-import tensorflow as tf
 import os
 
 # Resolve path relative to the backend root (one level up from this file's directory)
 _BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(_BASE_DIR, "models", "best_soil_model.keras")
 
-# attempt to load the model, but continue even if it's missing
-model = None
-if os.path.exists(MODEL_PATH):
+_model = None
+_model_load_attempted = False
+
+
+def get_soil_model():
+    global _model, _model_load_attempted
+
+    if _model_load_attempted:
+        return _model
+
+    _model_load_attempted = True
+    if not os.path.exists(MODEL_PATH):
+        print(f"Warning: soil model not found at {MODEL_PATH}, predictions disabled")
+        return None
+
     try:
-        model = tf.keras.models.load_model(MODEL_PATH, compile=False)
+        os.environ.setdefault("CUDA_VISIBLE_DEVICES", "-1")
+        os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
+        import tensorflow as tf
+
+        _model = tf.keras.models.load_model(MODEL_PATH, compile=False)
     except Exception as exc:
-        # print to console so developer sees problem
         print(f"Warning: failed to load soil model: {exc}")
-else:
-    print(f"Warning: soil model not found at {MODEL_PATH}, predictions disabled")
+        _model = None
+
+    return _model
 
 # Classes are ordered alphabetically to match how Keras flow_from_directory
 # assigned indices during training (sorted by folder name A→Z).

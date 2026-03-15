@@ -7,7 +7,7 @@ import numpy as np
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.conf import settings
-from .model_loader import model, soil_classes
+from .model_loader import get_soil_model, soil_classes
 from .utils import preprocess_image
 from models.mongo import soils_collection
 
@@ -36,6 +36,7 @@ def detect_soil(request):
     img = preprocess_image(file_path)
 
     # Predict
+    model = get_soil_model()
     if model is None:
         return Response({"error": "Model unavailable"}, status=503)
 
