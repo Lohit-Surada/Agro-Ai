@@ -3,7 +3,7 @@ import os
 
 # Resolve path relative to the backend root (one level up from this file's directory)
 _BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(_BASE_DIR, "models", "best_soil_model_compressed.tflite")
+MODEL_PATH = os.path.join(_BASE_DIR, "models", "soil_model_compressed.tflite")
 
 
 class TFLiteSoilModel:
