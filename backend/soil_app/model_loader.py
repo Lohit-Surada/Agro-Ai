@@ -1,35 +1,53 @@
+import tensorflow as tf
 import os
 
 # Resolve path relative to the backend root (one level up from this file's directory)
 _BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(_BASE_DIR, "models", "best_soil_model.keras")
-
-_model = None
-_model_load_attempted = False
+MODEL_PATH = os.path.join(_BASE_DIR, "models", "best_soil_model_compressed.tflite")
 
 
-def get_soil_model():
-    global _model, _model_load_attempted
+class TFLiteSoilModel:
+    def __init__(self, model_path):
+        self.interpreter = tf.lite.Interpreter(model_path=model_path)
+        self.interpreter.allocate_tensors()
+        self.input_details = self.interpreter.get_input_details()[0]
+        self.output_details = self.interpreter.get_output_details()[0]
 
-    if _model_load_attempted:
-        return _model
+    def predict(self, input_batch):
+        input_data = tf.convert_to_tensor(input_batch).numpy()
 
-    _model_load_attempted = True
-    if not os.path.exists(MODEL_PATH):
-        print(f"Warning: soil model not found at {MODEL_PATH}, predictions disabled")
-        return None
+        expected_dtype = self.input_details["dtype"]
+        if input_data.dtype != expected_dtype:
+            input_data = input_data.astype(expected_dtype)
 
+        expected_shape = tuple(self.input_details["shape"])
+        if len(expected_shape) == len(input_data.shape):
+            adjusted_shape = list(expected_shape)
+            for idx, dim in enumerate(adjusted_shape):
+                if dim == -1:
+                    adjusted_shape[idx] = input_data.shape[idx]
+            expected_shape = tuple(adjusted_shape)
+
+        if input_data.shape != expected_shape:
+            raise ValueError(
+                f"Input shape mismatch. Expected {expected_shape}, got {input_data.shape}"
+            )
+
+        self.interpreter.set_tensor(self.input_details["index"], input_data)
+        self.interpreter.invoke()
+        output = self.interpreter.get_tensor(self.output_details["index"])
+        return output
+
+# attempt to load the model, but continue even if it's missing
+model = None
+if os.path.exists(MODEL_PATH):
     try:
-        os.environ.setdefault("CUDA_VISIBLE_DEVICES", "-1")
-        os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
-        import tensorflow as tf
-
-        _model = tf.keras.models.load_model(MODEL_PATH, compile=False)
+        model = TFLiteSoilModel(MODEL_PATH)
     except Exception as exc:
+        # print to console so developer sees problem
         print(f"Warning: failed to load soil model: {exc}")
-        _model = None
-
-    return _model
+else:
+    print(f"Warning: soil model not found at {MODEL_PATH}, predictions disabled")
 
 # Classes are ordered alphabetically to match how Keras flow_from_directory
 # assigned indices during training (sorted by folder name A→Z).

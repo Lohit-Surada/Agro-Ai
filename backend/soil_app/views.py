@@ -7,8 +7,9 @@ import numpy as np
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.conf import settings
-from .model_loader import get_soil_model, soil_classes
+from .model_loader import model, soil_classes
 from .utils import preprocess_image
+from models.mongo import soils_collection
 
 
 UPLOAD_DIR = os.path.join(settings.MEDIA_ROOT, "soil_images")
@@ -35,11 +36,14 @@ def detect_soil(request):
     img = preprocess_image(file_path)
 
     # Predict
-    model = get_soil_model()
     if model is None:
         return Response({"error": "Model unavailable"}, status=503)
 
-    prediction = model.predict(img)
+    try:
+        prediction = model.predict(img)
+    except Exception as exc:
+        return Response({"error": f"Prediction failed: {str(exc)}"}, status=500)
+
     probs = prediction[0]
 
     # Top prediction
@@ -57,8 +61,6 @@ def detect_soil(request):
     # Fetch recommended crops from MongoDB soils collection
     recommended_crops = []
     try:
-        from models.mongo import soils_collection
-
         soil_doc = soils_collection.find_one({"soil_name": {"$regex": f"^{soil_type}$", "$options": "i"}})
         if soil_doc:
             raw = soil_doc.get("suitable_crops", "")

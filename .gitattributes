@@ -1,0 +1,2 @@
+*.keras filter=lfs diff=lfs merge=lfs -text
+backend/models/best_soil_model.keras filter=lfs diff=lfs merge=lfs -text

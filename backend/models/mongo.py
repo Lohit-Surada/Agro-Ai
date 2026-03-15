@@ -12,9 +12,9 @@ default_uri = (
 )
 uri = os.getenv("MONGO_URI", default_uri)
 
-server_selection_timeout_ms = int(os.getenv("MONGO_SERVER_SELECTION_TIMEOUT_MS", "3000"))
-connect_timeout_ms = int(os.getenv("MONGO_CONNECT_TIMEOUT_MS", "3000"))
-socket_timeout_ms = int(os.getenv("MONGO_SOCKET_TIMEOUT_MS", "3000"))
+server_selection_timeout_ms = int(os.getenv("MONGO_SERVER_SELECTION_TIMEOUT_MS", "8000"))
+connect_timeout_ms = int(os.getenv("MONGO_CONNECT_TIMEOUT_MS", "8000"))
+socket_timeout_ms = int(os.getenv("MONGO_SOCKET_TIMEOUT_MS", "8000"))
 db_name = os.getenv("MONGO_DB_NAME", "Agrodb")
 
 

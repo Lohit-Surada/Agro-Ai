@@ -8,7 +8,6 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
-.venv/
 venv/
 env/
 *.egg-info/
@@ -19,8 +18,7 @@ build/
 # Django
 media/
 *.log
-backend/uploads/
-backend/models/*.keras
+!backend/models/best_soil_model.keras
 # Node / frontend
 node_modules/
 dist/
