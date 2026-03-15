@@ -1,0 +1,12 @@
+Django==6.0.2
+djangorestframework
+django-cors-headers
+pymongo
+certifi
+bcrypt
+PyJWT
+numpy
+pandas
+xgboost
+tensorflow
+Pillow
