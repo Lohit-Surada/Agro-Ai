@@ -1,0 +1,394 @@
+/* src/styles/home/Hero.css */
+
+/* ─── Home page wrapper ─────────────────────────────── */
+.home-page {
+  background: linear-gradient(145deg, #040f02 0%, #0a1e05 35%, #0d2607 65%, #132e0a 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ─── Hero banner ────────────────────────────────────── */
+.hero {
+  height: 80vh;
+  background: url("../../assets/hero/hero.jpeg") center/cover no-repeat;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 20, 14, 0.28) 0%,
+    rgba(8, 20, 14, 0.58) 60%,
+    rgba(8, 20, 14, 0.42) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ─── Hero content ───────────────────────────────────── */
+.hero-content {
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+  animation: heroFadeIn 900ms ease-out;
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 22px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #c8e600;
+  margin-bottom: 22px;
+  backdrop-filter: blur(6px);
+  text-shadow: 0 0 12px rgba(200, 240, 0, 0.45);
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4adc92;
+  box-shadow: 0 0 8px #4adc92;
+  animation: dotPulse 2.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Heading */
+.hero-heading {
+  font-size: 56px;
+  font-weight: 800;
+  margin: 206px 0 16px;
+  line-height: 1.1;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hero-highlight {
+  background: linear-gradient(90deg, #4adc92, #00c4ff, #a8ff8c, #4adc92);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s linear infinite;
+}
+
+/* Subtitle */
+.hero-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 20px;
+  line-height: 1.65;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Stats row */
+.hero-stats-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.hero-stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 0 22px rgba(74, 220, 146, 0.55);
+}
+
+.hero-stat-lbl {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.62);
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.hero-stat-sep {
+  width: 1px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Action section ─────────────────────────────────── */
+.hero-action-section {
+  padding: 0 16px;
+  position: relative;
+  top: -30px;
+}
+
+.hac-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ─── HAC Card ───────────────────────────────────────── */
+.hac-card {
+  margin-top:20px;
+  position: relative;
+  border-radius: 20px;
+  padding: 22px 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid transparent;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.22s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14);
+  will-change: transform;
+}
+
+.hac-card:hover {
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.2);
+}
+
+.hac-soil {
+  background: rgba(8, 20, 6, 0.82);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border-color: rgba(126, 232, 78, 0.80);
+  box-shadow:
+    0 0 0 1px rgba(126,232,78,0.20),
+    0 0 28px rgba(126,232,78,0.25),
+    0 20px 50px rgba(0,0,0,0.55),
+    0 8px 20px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(126,232,78,0.14);
+}
+.hac-crop {
+  background: rgba(8, 20, 6, 0.82);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border-color: rgba(200, 230, 0, 0.80);
+  box-shadow:
+    0 0 0 1px rgba(200,230,0,0.20),
+    0 0 28px rgba(200,230,0,0.25),
+    0 20px 50px rgba(0,0,0,0.55),
+    0 8px 20px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(200,240,0,0.14);
+}
+
+/* Glow blob */
+.hac-card-glow {
+  position: absolute;
+  top: -38px; left: -38px;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  opacity: 0.08;
+  filter: blur(32px);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.hac-soil .hac-card-glow  { background: #4adc92; }
+.hac-crop .hac-card-glow  { background: #c8e600; }
+.hac-card:hover .hac-card-glow { opacity: 0.2; }
+
+/* ─── Icon wrap ──────────────────────────────────────── */
+.hac-icon-wrap {
+  flex-shrink: 0;
+  width: 70px; height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Soil mini-globe ────────────────────────────────── */
+.soil-mini-globe {
+  position: relative;
+  width: 62px; height: 62px;
+}
+
+.smg-sphere {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 33% 28%, rgba(255,255,255,0.3) 0%, transparent 52%),
+    conic-gradient(from 0deg,
+      #4a7c59 0%,  #8b6914 20%,  #6b9a5e 38%,
+      #7a5830 55%, #3d6448 70%,  #9c7a3d 88%,  #4a7c59 100%);
+  box-shadow:
+    inset -14px -12px 28px rgba(0,0,0,0.42),
+    inset 5px 4px 14px rgba(255,220,120,0.16),
+    0 0 24px rgba(74,124,89,0.42),
+    0 8px 20px rgba(0,0,0,0.2);
+  animation: miniGlobeFloat 3.5s ease-in-out infinite;
+}
+
+.smg-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotateX(72deg);
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(74, 124, 89, 0.45);
+  animation: miniRingRotate 6s linear infinite;
+}
+
+@keyframes miniGlobeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+@keyframes miniRingRotate {
+  from { transform: translate(-50%, -50%) rotateX(72deg) rotateZ(0deg); }
+  to   { transform: translate(-50%, -50%) rotateX(72deg) rotateZ(360deg); }
+}
+
+/* ─── Crop mini-plant ────────────────────────────────── */
+.crop-mini-plant {
+  position: relative;
+  width: 58px; height: 68px;
+  animation: miniPlantBob 3.2s ease-in-out infinite;
+}
+
+.cmp-pot {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 28px; height: 16px;
+  background: linear-gradient(180deg, #c07840, #9e5c28);
+  border-radius: 2px 2px 6px 6px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.cmp-stem {
+  position: absolute;
+  bottom: 14px; left: 50%;
+  width: 3px; height: 36px;
+  background: linear-gradient(180deg, #3a8e3a, #2a6e2a);
+  border-radius: 2px;
+  transform-origin: bottom center;
+  transform: translateX(-50%);
+  animation: miniStemSway 3.2s ease-in-out infinite;
+}
+
+.cmp-leaf {
+  position: absolute;
+  background: linear-gradient(135deg, #4caa4c, #2a7a2a);
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.2);
+}
+.cmp-leaf-l {
+  width: 22px; height: 12px;
+  border-radius: 50% 0 50% 0;
+  bottom: 36px; left: 10px;
+  transform-origin: right center;
+  animation: miniLeafL 3.2s ease-in-out infinite;
+}
+.cmp-leaf-r {
+  width: 22px; height: 12px;
+  border-radius: 0 50% 0 50%;
+  background: linear-gradient(135deg, #5abb5a, #3a8a3a);
+  bottom: 40px; right: 10px;
+  transform-origin: left center;
+  animation: miniLeafR 3.2s ease-in-out infinite;
+}
+.cmp-leaf-t {
+  width: 18px; height: 18px;
+  border-radius: 50% 0;
+  background: linear-gradient(135deg, #60c060, #2a8a2a);
+  bottom: 50px; left: 50%;
+  transform: translateX(-50%);
+  animation: miniLeafT 3.2s ease-in-out infinite;
+}
+
+@keyframes miniPlantBob  { 0%, 100% { transform: translateY(0); }  50% { transform: translateY(-6px); } }
+@keyframes miniStemSway  { 0%, 100% { transform: translateX(-50%) rotate(0deg);  }  25% { transform: translateX(-50%) rotate(2.5deg); }  75% { transform: translateX(-50%) rotate(-2.5deg); } }
+@keyframes miniLeafL     { 0%, 100% { transform: rotate(0deg); }    50% { transform: rotate(-10deg); } }
+@keyframes miniLeafR     { 0%, 100% { transform: rotate(0deg); }    50% { transform: rotate(10deg);  } }
+@keyframes miniLeafT     { 0%, 100% { transform: translateX(-50%) rotate(0deg);  }  50% { transform: translateX(-50%) rotate(6deg) scale(1.05); } }
+
+/* ─── HAC text ───────────────────────────────────────── */
+.hac-text { flex: 1; }
+
+.hac-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8f5d0;
+  margin: 0 0 7px;
+}
+
+.hac-desc {
+  font-size: 13.5px;
+  color: rgba(185, 235, 150, 0.78);
+  line-height: 1.55;
+  margin: 0 0 13px;
+}
+
+.hac-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: gap 0.2s;
+}
+.hac-soil .hac-cta { color: #7ee84e; }
+.hac-crop .hac-cta { color: #c8e600; }
+.hac-card:hover .hac-cta { gap: 10px; }
+
+.hac-arrow { transition: transform 0.2s; }
+.hac-card:hover .hac-arrow { transform: translateX(4px); }
+
+/* ─── Keyframes ──────────────────────────────────────── */
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0%   center; }
+  100% { background-position: 200% center; }
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 4px #c8e600;  transform: scale(1);   }
+  50%       { box-shadow: 0 0 14px #c8e600; transform: scale(1.35); }
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero { padding: 0 24px; }
+  .hero-heading { font-size: 42px; }
+}
+
+@media (max-width: 768px) {
+  .hero { height: auto; min-height: 60vh; padding: 60px 20px 48px; }
+  .hero-heading  { font-size: 34px; }
+  .hero-subtitle { font-size: 15px; max-width: 100%; }
+  .hac-grid { grid-template-columns: 1fr; max-width: 480px; }
+  .hero-stat-item { padding: 0 16px; }
+  .hero-stat-num  { font-size: 22px; }
+  .hero-stats-row { gap: 0; flex-wrap: wrap; justify-content: center; }
+  .hero-action-section { padding: 0 20px 48px; }
+}
+
+@media (max-width: 480px) {
+  .hero { min-height: auto; padding: 48px 16px 36px; }
+  .hero-heading { font-size: 26px; }
+  .hero-subtitle { font-size: 14px; }
+  .hero-stat-item { padding: 0 10px; }
+  .hero-stat-num  { font-size: 20px; }
+  .hero-stat-label { font-size: 11px; }
+  .hero-badge { font-size: 11px; padding: 4px 12px; }
+  .hac-card { padding: 22px 20px 20px; }
+  .hac-title { font-size: 18px; }
+  .hac-desc  { font-size: 13px; }
+}
+
+

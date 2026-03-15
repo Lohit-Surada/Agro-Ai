@@ -1,0 +1,43 @@
+/* src/styles/home/AnimationSection.css */
+.animation-section {
+  margin: 50px 0;
+  overflow: hidden;
+  padding: 0 8px;
+  background: #040f02;
+}
+
+.slider {
+  display: flex;
+  width: max-content;
+  animation: slide 28s linear infinite;
+  gap: 16px;
+}
+
+.slide {
+  min-width: 300px;
+}
+
+/* responsive slide widths */
+@media (max-width: 768px) {
+  .slide { min-width: 44vw; }
+  .slide img { width: 44vw; height: 200px; }
+  .animation-section { margin: 32px 0; }
+}
+@media (max-width: 480px) {
+  .slide { min-width: 72vw; }
+  .slide img { width: 72vw; height: 170px; }
+}
+
+.slide img {
+  width: 300px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Slide animation */
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

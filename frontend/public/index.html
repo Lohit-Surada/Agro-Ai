@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroAI - Soil & Crop Advisor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">AgroAI</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li>
+        <input type="text" class="search-bar" placeholder="Search soil or crop...">
+      </li>
+      <li><button onclick="location.href='#'">Login</button></li>
+      <li><button onclick="location.href='#'">Signup</button></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>Welcome to AgroAI</h1>
+        <p>Soil Detection & Crop Recommendation System</p>
+        <div class="hero-card">
+          <button onclick="location.href='soil-detection.html'">Soil Detection</button>
+          <button onclick="location.href='crop-recommendation.html'">Crop Recommendation</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+    <div class="card">
+      <h3>Users</h3>
+      <p id="userCount">1024</p>
+    </div>
+    <div class="card">
+      <h3>Admins</h3>
+      <p id="adminCount">12</p>
+    </div>
+  </section>
+
+  <!-- Animation Section -->
+  <section class="animation-section">
+    <div class="slider">
+      <div class="slide"><img src="images/crop1.jpg" alt="Crop 1"></div>
+      <div class="slide"><img src="images/crop2.jpg" alt="Crop 2"></div>
+      <div class="slide"><img src="images/crop3.jpg" alt="Crop 3"></div>
+      <div class="slide"><img src="images/crop4.jpg" alt="Crop 4"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 AgroAI. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

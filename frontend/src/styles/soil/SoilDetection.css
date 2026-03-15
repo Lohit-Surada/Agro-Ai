@@ -1,0 +1,814 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ════════════════════════════════════════════
+   PAGE WRAPPER
+════════════════════════════════════════════ */
+.soil-detection-page {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.5rem 1rem 4rem;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  background: linear-gradient(145deg, #040f02 0%, #0a1e05 35%, #0d2607 65%, #132e0a 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.soil-detection-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 65% at 14% -5%,   rgba(185, 235, 0,   0.36) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 70% at 88% 108%,  rgba(0,   200, 80,  0.28) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 52% at 52% -8%,   rgba(220, 255, 50,  0.16) 0%, transparent 50%),
+    radial-gradient(ellipse 35% 40% at 76% 20%,   rgba(100, 255, 80,  0.10) 0%, transparent 45%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ════════════════════════════════════════════
+   MAIN CARD
+════════════════════════════════════════════ */
+.soil-detection-card {
+  width: min(620px, 96vw);
+  border-radius: 20px;
+  background: rgba(8, 20, 6, 0.82);
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  border: 1px solid rgba(80, 200, 50, 0.26);
+  box-shadow:
+    0 1px 0   rgba(130, 255, 80, 0.12) inset,
+    0 -1px 0  rgba(0, 0, 0, 0.25) inset,
+    0 4px  16px  rgba(0, 0, 0, 0.45),
+    0 16px 40px  rgba(0, 0, 0, 0.55),
+    0 40px 80px  rgba(0, 0, 0, 0.45),
+    0 0    60px -10px rgba(60, 180, 20, 0.22),
+    0 0   120px -20px rgba(30, 140, 0,  0.14);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Hero header ── */
+.soil-hero {
+  padding: 1.6rem 1.6rem 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(80, 200, 50, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.soil-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 50%, rgba(120, 200, 255, 0.07) 0%, transparent 55%),
+    radial-gradient(circle at 90% 10%, rgba(100, 180, 220, 0.08) 0%, transparent 45%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.soil-hero::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 24px 24px 0 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.soil-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(200, 240, 0, 0.14);
+  border: 1px solid rgba(200, 240, 0, 0.42);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #c8e600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: badgeFadeIn 0.6s ease both;
+}
+
+@keyframes badgeFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.soil-hero-title {
+  margin: 0 0 8px;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #FFEA00;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-shadow: 0 2px 18px rgba(220, 30, 30, 0.55), 0 0 40px rgba(180, 0, 0, 0.30);
+  animation: titleEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes titleEntrance {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes titleShimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+
+.soil-hero-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(185, 235, 150, 0.80);
+  font-weight: 400;
+  line-height: 1.55;
+  animation: titleEntrance 0.9s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Card body ── */
+.soil-card-body {
+  padding: 1.5rem 1.6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ════════════════════════════════════════════
+   FILE UPLOAD ZONE
+════════════════════════════════════════════ */
+.file-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 2px dashed rgba(80, 200, 60, 0.38);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(185, 235, 150, 0.82);
+  border-radius: 16px;
+  padding: 1.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.file-upload-label::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.file-upload-label:hover {
+  border-color: rgba(160, 240, 60, 0.68);
+  background: rgba(255, 255, 255, 0.09);
+  color: #a8e64c;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.40);
+}
+
+.file-upload-label:hover::before {
+  opacity: 1;
+}
+
+.file-upload-label:hover .upload-icon-wrap {
+  transform: scale(1.12);
+}
+
+.upload-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(80, 200, 60, 0.38);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  transition: transform 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.upload-main-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(210, 248, 180, 0.92);
+}
+
+.upload-sub-text {
+  font-size: 0.78rem;
+  color: rgba(140, 205, 110, 0.68);
+  font-weight: 400;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+/* ════════════════════════════════════════════
+   CAMERA
+════════════════════════════════════════════ */
+.soil-camera-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+}
+
+.soil-camera-start-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 2px dashed rgba(80, 200, 60, 0.32);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(185, 235, 150, 0.82);
+  border-radius: 16px;
+  padding: 1.6rem 1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+.soil-camera-start-btn:hover {
+  border-color: rgba(160, 240, 60, 0.62);
+  background: rgba(255, 255, 255, 0.10);
+  color: #a8e64c;
+}
+
+.soil-camera-video {
+  display: none;
+  width: 100%;
+  border-radius: 16px;
+  border: 2px solid rgba(80, 200, 60, 0.45);
+  background: #060e04;
+  max-height: 290px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.soil-camera-video--active {
+  display: block;
+}
+
+.soil-camera-canvas {
+  display: none;
+}
+
+.soil-camera-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.soil-capture-btn {
+  border: 1px solid rgba(0, 163, 108, 0.48);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 163, 108, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #00A36C;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.soil-capture-btn:hover {
+  background: rgba(0, 163, 108, 0.32);
+  transform: translateY(-1px);
+}
+
+.soil-capture-btn:active {
+  transform: translateY(0);
+}
+
+.soil-camera-cancel-btn {
+  border: 1px solid rgba(128, 0, 0, 0.40);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(210, 120, 120, 0.88);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  transition: background 0.18s;
+}
+
+.soil-camera-cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+/* ════════════════════════════════════════════
+   SELECTED FILE CHIP
+════════════════════════════════════════════ */
+.selected-file {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0, 163, 108, 0.22);
+  border: 1px solid rgba(0, 163, 108, 0.50);
+  border-radius: 10px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(100, 225, 155, 0.95);
+}
+
+/* ════════════════════════════════════════════
+   IMAGE PREVIEW
+════════════════════════════════════════════ */
+.preview-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(80, 200, 60, 0.42);
+  position: relative;
+  max-width: 280px;
+  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(130, 255, 80, 0.10) inset;
+}
+
+.preview-image {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ════════════════════════════════════════════
+   PREDICT BUTTON
+════════════════════════════════════════════ */
+.predict-btn {
+  width: 100%;
+  border: 1px solid rgba(0, 140, 85, 0.55);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(135deg, rgba(0, 130, 75, 0.80) 0%, rgba(0, 100, 55, 0.75) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 6px 20px rgba(0, 0, 0, 0.20);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.predict-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.predict-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-position: -200%;
+  transition: background-position 0.6s ease;
+  pointer-events: none;
+}
+
+.predict-btn:not(:disabled):hover {
+  background: linear-gradient(135deg, rgba(0, 150, 88, 0.92) 0%, rgba(0, 120, 65, 0.88) 100%);
+  transform: translateY(-2px);
+  border-color: rgba(0, 163, 108, 0.75);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 12px 28px rgba(0, 0, 0, 0.28),
+    0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.predict-btn:not(:disabled):hover::after {
+  background-position: 200%;
+}
+
+.predict-btn:not(:disabled):focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(100, 200, 230, 0.45),
+    0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.predict-btn:not(:disabled):active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.10) inset,
+    0 2px 8px rgba(0, 0, 0, 0.20);
+  transition: all 0.08s ease;
+}
+
+.predict-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+  background-position: 0% 50%;
+}
+
+/* ════════════════════════════════════════════
+   RESULT CARD
+════════════════════════════════════════════ */
+.soil-result-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(80, 200, 50, 0.26);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: resultReveal 0.45s cubic-bezier(0.21, 0.9, 0.24, 1);
+}
+
+@keyframes resultReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.soil-result-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 1.2rem;
+  background: rgba(0, 128, 0, 0.22);
+  border-bottom: 1px solid rgba(0, 180, 0, 0.32);
+}
+
+.result-success-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0, 128, 0, 0.28);
+  border: 2px solid rgba(0, 200, 80, 0.55);
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.soil-result-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #008000;
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 18px rgba(0, 200, 80, 0.45);
+}
+
+.soil-result-body {
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.soil-detected-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(154, 42, 42, 0.45);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.soil-detected-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(165, 215, 130, 0.75);
+}
+
+.soil-detected-type {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #EE4B2B;
+  text-shadow: 0 0 20px rgba(180, 40, 40, 0.45);
+  letter-spacing: -0.02em;
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+/* ── Top 3 predictions (table) ── */
+.soil-top3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.soil-top3-title {
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(165, 215, 130, 0.80);
+  margin: 0 0 4px !important;
+}
+
+.soil-confidence-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(80, 180, 40, 0.24);
+}
+
+.soil-conf-th {
+  background: rgba(0, 100, 30, 0.32);
+  color: #7ee84e;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(80, 200, 50, 0.24);
+}
+
+.soil-conf-th--right {
+  text-align: right;
+}
+
+.soil-conf-row {
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(80, 180, 40, 0.14);
+  transition: background 0.18s ease;
+}
+
+.soil-conf-row:last-child {
+  border-bottom: none;
+}
+
+.soil-conf-row:hover {
+  background: rgba(0, 163, 108, 0.22);
+}
+
+.soil-conf-row--best {
+  background: rgba(154, 42, 42, 0.18);
+  font-weight: 800;
+}
+
+.soil-conf-td {
+  padding: 0.65rem 0.9rem;
+  font-size: 0.88rem;
+  color: #C19A6B;
+  font-weight: 600;
+  display: table-cell;
+  vertical-align: middle;
+  gap: 0.5rem;
+}
+
+.soil-conf-td .soil-bar-rank {
+  display: inline-grid;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.soil-conf-td--right {
+  text-align: right;
+  font-weight: 800;
+  color: #00A36C;
+  white-space: nowrap;
+}
+
+.soil-conf-row--best .soil-conf-td--right {
+  color: #00A36C;
+}
+
+/* ── Advanced Crop Recommendation button ── */
+.soil-adv-btn {
+  width: 100%;
+  border: 1px solid rgba(0, 180, 80, 0.40);
+  border-radius: 14px;
+  padding: 0.88rem 1rem;
+  background: rgba(0, 140, 55, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #6ee04c;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 4px 16px rgba(0, 0, 0, 0.18);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.soil-adv-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.soil-adv-btn:hover {
+  background: rgba(0, 163, 108, 0.30);
+  transform: translateY(-2px);
+  color: #a8e64c;
+  border-color: rgba(0, 210, 100, 0.58);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 10px 28px rgba(0, 0, 0, 0.28),
+    0 0 0 3px rgba(255, 255, 255, 0.07);
+}
+
+.soil-adv-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(100, 200, 230, 0.40),
+    0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+.soil-adv-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 2px 6px rgba(0, 0, 0, 0.18);
+  transition: all 0.08s ease;
+}
+
+/* ── Rank badge (reused in table) ── */
+.soil-bar-rank {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: rgba(114, 47, 55, 0.12);
+  border: 1px solid rgba(114, 47, 55, 0.28);
+  color: #722F37;
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.soil-conf-row--best .soil-bar-rank {
+  background: rgba(0, 163, 108, 0.14);
+  border-color: rgba(0, 163, 108, 0.32);
+  color: #00A36C;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Recommended Crops ── */
+.soil-crops-section {
+  padding-top: 0.9rem;
+  border-top: 1px dashed rgba(80, 200, 60, 0.28);
+}
+
+.soil-crops-title {
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(165, 215, 130, 0.82);
+  margin: 0 0 0.75rem !important;
+}
+
+.soil-crops-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+/* Colorful rotating chip palette */
+.soil-crop-chip {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.32rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1.5px solid transparent;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  cursor: default;
+}
+
+.soil-crop-chip:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  filter: brightness(1.10);
+}
+
+.soil-crop-chip:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.soil-crop-chip:nth-child(6n+1) {
+  background: rgba(220, 252, 231, 0.15);
+  border-color: rgba(134, 239, 172, 0.35);
+  color: #86efac;
+}
+
+.soil-crop-chip:nth-child(6n+2) {
+  background: rgba(219, 234, 254, 0.12);
+  border-color: rgba(147, 197, 253, 0.35);
+  color: #93c5fd;
+}
+
+.soil-crop-chip:nth-child(6n+3) {
+  background: rgba(254, 249, 195, 0.12);
+  border-color: rgba(253, 224, 71, 0.30);
+  color: #fde047;
+}
+
+.soil-crop-chip:nth-child(6n+4) {
+  background: rgba(252, 231, 243, 0.12);
+  border-color: rgba(249, 168, 212, 0.30);
+  color: #f9a8d4;
+}
+
+.soil-crop-chip:nth-child(6n+5) {
+  background: rgba(237, 233, 254, 0.12);
+  border-color: rgba(196, 181, 253, 0.30);
+  color: #c4b5fd;
+}
+
+.soil-crop-chip:nth-child(6n+6) {
+  background: rgba(255, 237, 213, 0.12);
+  border-color: rgba(253, 186, 116, 0.30);
+  color: #fdba74;
+}
+
+/* ════════════════════════════════════════════
+   SOIL DETECTION FORM
+════════════════════════════════════════════ */
+.soil-detection-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .soil-hero {
+    padding: 1.4rem 1.2rem 1.8rem;
+  }
+
+  .soil-hero-title {
+    font-size: 1.55rem;
+  }
+
+  .soil-card-body {
+    padding: 1.1rem 1.1rem 1.5rem;
+  }
+}

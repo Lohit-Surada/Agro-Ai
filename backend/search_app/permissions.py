@@ -1,0 +1,1 @@
+from authentication.permissions import is_admin

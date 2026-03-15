@@ -1,0 +1,34 @@
+/* styles for admin user management page */
+.admin-users-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.admin-users-page h2 {
+  color: #1f8f4e;
+}
+
+.user-list {
+  list-style: none;
+  color: #e74c3c;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.user-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #1d14d4;
+}
+
+.user-list button {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}

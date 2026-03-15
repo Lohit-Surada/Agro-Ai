@@ -1,0 +1,328 @@
+/* src/styles/public/SoilsList.css */
+
+.sl-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Hero banner ──────────────────────────────────── */
+.sl-hero {
+  text-align: center;
+  padding: 56px 24px 40px;
+  background: linear-gradient(160deg, #fdf9f0 0%, #f5ede0 100%);
+  border-bottom: 1px solid rgba(180,110,40,0.1);
+  margin-bottom: 36px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sl-hero-eyebrow {
+  display: inline-block;
+  padding: 4px 16px;
+  background: rgba(180,110,40,0.1);
+  border: 1px solid rgba(180,110,40,0.25);
+  border-radius: 50px;
+  color: #8c5a20;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.sl-hero-title {
+  font-size: 38px;
+  font-weight: 900;
+  color: #1a2010;
+  margin: 0 0 14px;
+  letter-spacing: -0.01em;
+}
+
+.sl-hero-sub {
+  font-size: 16px;
+  color: #6a5030;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ── Controls ──────────────────────────────────────── */
+.sl-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.sl-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 420px;
+}
+
+.sl-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.sl-search {
+  width: 100%;
+  padding: 10px 36px 10px 36px;
+  border: 1.5px solid rgba(180,110,40,0.3);
+  border-radius: 10px;
+  font-size: 14px;
+  color: #1a2010;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.sl-search:focus { border-color: #b46e28; box-shadow: 0 0 0 3px rgba(180,110,40,0.1); }
+
+.sl-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 13px;
+  color: #a08060;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+/* ── Count line ────────────────────────────────────── */
+.sl-count {
+  font-size: 13px;
+  color: #1f5c2f;
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+/* ── List ──────────────────────────────────────────── */
+.sl-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+/* ── Card ──────────────────────────────────────────── */
+.sl-card {
+  background: #fff;
+  border: 1px solid #d6e4e8;
+  border-radius: 16px;
+  padding: 0.85rem;
+  box-shadow: 0 12px 26px rgba(20, 33, 45, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.sl-card:hover {
+  border-color: #b46e28;
+  transform: translateY(-2px);
+}
+
+.sl-card-img-wrap {
+  width: 190px;
+  min-width: 190px;
+  height: 126px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5ede0;
+  flex-shrink: 0;
+}
+
+.sl-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sl-card-img-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  color: #8c6040;
+}
+
+.sl-card-name {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a2010;
+  flex: 1;
+}
+
+/* ── Detail Modal ──────────────────────────────────── */
+.sl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 18, 16, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 900;
+  padding: 1rem;
+}
+
+.sl-modal {
+  background: #fdf9f4;
+  border-radius: 18px;
+  border: 1px solid #e8d8c0;
+  box-shadow: 0 20px 40px rgba(40, 20, 5, 0.25);
+  width: min(1040px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.sl-modal-close {
+  margin-left: auto;
+  display: block;
+  border: none;
+  border-radius: 10px;
+  background: #f0e4d0;
+  color: #3a2010;
+  padding: 0.45rem 0.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sl-modal-close:hover { background: #e0cdb0; }
+
+.sl-modal-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+.sl-modal-hero {
+  background: #fff;
+  border: 1px solid #e0d0b8;
+  border-radius: 16px;
+  padding: 0.9rem;
+  box-shadow: 0 10px 22px rgba(40, 20, 5, 0.08);
+}
+
+.sl-modal-img {
+  width: 100%;
+  border-radius: 12px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.sl-modal-placeholder {
+  display: grid;
+  place-items: center;
+  height: 240px;
+  border-radius: 12px;
+  background: #f5ede0;
+  color: #8c6040;
+  font-size: 56px;
+  font-weight: 600;
+}
+
+.sl-modal-hero h3 {
+  margin: 0.8rem 0 0;
+  color: #3a2010;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.sl-modal-info-card {
+  background: #ffffff;
+  border: 1px solid #e0d0b8;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 14px 30px rgba(40, 20, 5, 0.08);
+}
+
+.sl-modal-info-title {
+  margin: 0 0 0.85rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #7a4018;
+}
+
+.sl-modal-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.sl-modal-info-row {
+  background: #fdf8f2;
+  border: 1px solid #e8d8c0;
+  border-radius: 12px;
+  padding: 0.7rem 0.75rem;
+}
+
+.sl-modal-info-row-full { grid-column: 1 / -1; }
+
+.sl-modal-info-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #8c5a20;
+}
+
+.sl-modal-info-value {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.45;
+  color: #3a2010;
+}
+
+/* ── Loading / empty ───────────────────────────────── */
+.sl-loading, .sl-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  gap: 16px;
+  color: #7a5030;
+  font-size: 15px;
+}
+
+.sl-spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid rgba(180,110,40,0.1);
+  border-top-color: #b46e28;
+  animation: slSpin 0.7s linear infinite;
+}
+
+.sl-empty-icon { font-size: 48px; }
+
+@keyframes slSpin { to { transform: rotate(360deg); } }
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 760px) {
+  .sl-modal-layout     { grid-template-columns: 1fr; }
+  .sl-modal-info-grid  { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .sl-hero-title       { font-size: 28px; }
+  .sl-controls         { flex-direction: column; align-items: stretch; }
+  .sl-search-wrap      { max-width: 100%; }
+  .sl-card-img-wrap    { width: 110px; min-width: 110px; height: 80px; }
+  .sl-card-name        { font-size: 1.25rem; }
+}

@@ -1,0 +1,248 @@
+/* src/styles/auth/AuthForm.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ─────────────────────────────────────────────
+   AUTH PAGE — GREEN / YELLOW / RED PALETTE
+───────────────────────────────────────────── */
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(160deg, #020e02 0%, #071a05 35%, #0c2808 65%, #071403 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* soft floating blobs */
+.auth-page::before,
+.auth-page::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.auth-page::before {
+  width: 520px;
+  height: 520px;
+  top: -150px;
+  right: -130px;
+  background: rgba(100, 200, 40, 0.14);
+  filter: blur(100px);
+}
+
+.auth-page::after {
+  width: 440px;
+  height: 440px;
+  bottom: -120px;
+  left: -120px;
+  background: rgba(200, 230, 20, 0.10);
+  filter: blur(90px);
+}
+
+/* ── GLASS CARD ── */
+.auth-card {
+  width: 100%;
+  max-width: 390px;
+  background: rgba(4, 18, 3, 0.82);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(190, 230, 50, 0.22);
+  border-top: 1.5px solid rgba(240, 240, 40, 0.45);
+  border-radius: 22px;
+  box-shadow:
+    0 0 0 1px rgba(180, 220, 30, 0.10),
+    0 0 40px rgba(120, 200, 30, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(240, 240, 60, 0.10);
+  padding: 46px 38px 42px;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-title {
+  font-size: 1.72rem;
+  font-weight: 800;
+  color: #f0ff80;
+  text-align: center;
+  margin: 0 0 28px 0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 24px rgba(200, 240, 0, 0.40), 0 2px 8px rgba(0,0,0,0.5);
+}
+
+/* ── Info banner (yellow/amber) ── */
+.auth-info-msg {
+  background: rgba(200, 160, 0, 0.18);
+  border: 1px solid rgba(240, 200, 0, 0.35);
+  color: #ffe066;
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ── Error banner (red) ── */
+.auth-error-msg {
+  background: rgba(200, 30, 30, 0.18);
+  border: 1px solid rgba(220, 50, 50, 0.40);
+  color: #ff8080;
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.auth-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.auth-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.auth-field-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(190, 240, 100, 0.85);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.auth-field-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 12px 42px 12px 14px;
+  border-radius: 11px;
+  border: 1.5px solid rgba(160, 210, 40, 0.28);
+  background: rgba(10, 30, 6, 0.70);
+  color: #eef8c4;
+  caret-color: #dff08a;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+
+.auth-field input:focus {
+  border-color: #c8e600;
+  box-shadow: 0 0 0 3px rgba(200, 230, 0, 0.14), 0 0 14px rgba(150, 200, 0, 0.18);
+  background: rgba(12, 36, 6, 0.85);
+}
+
+.auth-field input::placeholder {
+  color: rgba(170, 215, 95, 0.62);
+}
+
+.auth-field input:-webkit-autofill,
+.auth-field input:-webkit-autofill:hover,
+.auth-field input:-webkit-autofill:focus,
+.auth-field input:-webkit-autofill:active {
+  -webkit-text-fill-color: #eef8c4;
+  box-shadow: 0 0 0 1000px rgba(10, 30, 6, 0.92) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.auth-field input[type="password"]::-ms-reveal,
+.auth-field input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* ── Eye icon toggle button ── */
+.auth-show-btn {
+  position: absolute;
+  right: 11px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: rgba(180, 228, 80, 0.55);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.18s, background 0.18s;
+  line-height: 0;
+}
+
+.auth-show-btn svg {
+  display: block;
+  pointer-events: none;
+}
+
+.auth-show-btn:hover {
+  color: #c8e600;
+  background: rgba(200, 230, 0, 0.10);
+}
+
+/* ── Submit button (yellow-green → bright yellow) ── */
+.auth-submit-btn {
+  width: 100%;
+  padding: 13px;
+  margin-top: 6px;
+  background: linear-gradient(90deg, #44a320 0%, #98d400 50%, #d4f000 100%);
+  border: none;
+  border-radius: 11px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #081400;
+  cursor: pointer;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 22px rgba(140, 210, 0, 0.40), 0 2px 8px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.auth-submit-btn:hover {
+  filter: brightness(1.10);
+  box-shadow: 0 6px 30px rgba(180, 240, 0, 0.55), 0 3px 10px rgba(0,0,0,0.40);
+  transform: translateY(-2px);
+}
+
+.auth-submit-btn:active {
+  transform: translateY(0);
+  filter: brightness(0.94);
+}
+
+/* ── Switch text row ── */
+.auth-switch-text {
+  text-align: center;
+  margin: 22px 0 0 0;
+  font-size: 0.86rem;
+  color: rgba(160, 210, 70, 0.55);
+}
+
+.auth-switch-text a {
+  color: #c8e600;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.auth-switch-text a:hover {
+  color: #f0ff60;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 34px 22px 30px;
+  }
+}

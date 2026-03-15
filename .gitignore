@@ -1,0 +1,29 @@
+# Windows reserved device names (cannot be indexed by Git on Windows)
+nul
+backend/nul
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+*.sqlite3
+
+# Django
+media/
+*.log
+backend/uploads/
+backend/models/*.keras
+
+# Node / frontend
+node_modules/
+dist/
+.env
+venv/
