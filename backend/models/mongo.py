@@ -12,9 +12,9 @@ default_uri = (
 )
 uri = os.getenv("MONGO_URI", default_uri)
 
-server_selection_timeout_ms = int(os.getenv("MONGO_SERVER_SELECTION_TIMEOUT_MS", "8000"))
-connect_timeout_ms = int(os.getenv("MONGO_CONNECT_TIMEOUT_MS", "8000"))
-socket_timeout_ms = int(os.getenv("MONGO_SOCKET_TIMEOUT_MS", "8000"))
+server_selection_timeout_ms = int(os.getenv("MONGO_SERVER_SELECTION_TIMEOUT_MS", "3000"))
+connect_timeout_ms = int(os.getenv("MONGO_CONNECT_TIMEOUT_MS", "3000"))
+socket_timeout_ms = int(os.getenv("MONGO_SOCKET_TIMEOUT_MS", "3000"))
 db_name = os.getenv("MONGO_DB_NAME", "Agrodb")
 
 
@@ -26,21 +26,23 @@ client = MongoClient(
     serverSelectionTimeoutMS=server_selection_timeout_ms,
     connectTimeoutMS=connect_timeout_ms,
     socketTimeoutMS=socket_timeout_ms,
+    connect=False,
 )
-#
-# # Send a ping to confirm a successful connection
-try:
-    client.admin.command("ping")
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(
-        "MongoDB Atlas connection failed. Check: "
-        "1) Atlas Network Access IP allowlist, "
-        "2) DB user/password, "
-        "3) outbound port 27017/firewall/VPN/proxy."
-    )
-    print(e)
-#
+
+run_startup_ping = os.getenv("MONGO_RUN_STARTUP_PING", "true").strip().lower() in {"1", "true", "yes", "on"}
+if run_startup_ping:
+    try:
+        client.admin.command("ping")
+        print("MongoDB connected successfully (startup ping ok).")
+    except Exception as exc:
+        print(
+            "MongoDB Atlas startup ping failed. Check: "
+            "1) Atlas Network Access IP allowlist, "
+            "2) DB user/password, "
+            "3) outbound port 27017/firewall/VPN/proxy."
+        )
+        print(exc)
+
 db = client[db_name]
 #
 # # Collections
