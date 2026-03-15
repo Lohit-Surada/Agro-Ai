@@ -21,7 +21,6 @@ media/
 *.log
 backend/uploads/
 backend/models/*.keras
-!backend/models/best_soil_model.keras
 # Node / frontend
 node_modules/
 dist/
