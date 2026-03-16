@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import "../styles/search/CropSearch.css";
 
-const BACKEND_ORIGIN = "http://localhost:8000";
+const BACKEND_ORIGIN = import.meta.env.VITE_API_BASE_URL;
 
 const asText = (value) => {
   if (Array.isArray(value)) return value.join(", ");

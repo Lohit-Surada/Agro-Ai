@@ -20,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/auth/stats/");
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/auth/stats/`);
         setCounts({
           users: res.data.users,
           admins: res.data.admins,
@@ -39,7 +39,7 @@ const Dashboard = () => {
     if (role === "admin") {
       const fetchUsers = async () => {
         try {
-          const resp = await axios.get("http://localhost:8000/api/auth/users/", {
+          const resp = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/auth/users/`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUsersList(resp.data.users);
@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/auth/users/${userId}/`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/auth/users/${userId}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsersList((prev) => prev.filter((u) => u.userId !== userId));

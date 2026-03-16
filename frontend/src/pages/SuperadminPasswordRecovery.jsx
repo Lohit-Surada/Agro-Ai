@@ -36,7 +36,7 @@ const SuperadminPasswordRecovery = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:8000/api/auth/superadmin/reset-password/", {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/superadmin/reset-password/`, {
         reset_token: resetToken,
         new_password: formData.new_password,
       });

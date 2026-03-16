@@ -44,7 +44,7 @@ const AuthForm = ({ type }) => {
     }
 
     setError("");
-    const baseURL = "http://localhost:8000/api/auth";
+    const baseURL = `${import.meta.env.VITE_API_BASE_URL}/api/auth`;
 
     try {
       let response;

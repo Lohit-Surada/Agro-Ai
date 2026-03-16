@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminCrops.css";
 
-const BACKEND_ORIGIN = "http://localhost:8000";
+const BACKEND_ORIGIN = import.meta.env.VITE_API_BASE_URL;
 
 const toImageUrl = (path) => {
   if (!path) return "";
@@ -32,7 +32,7 @@ function AdminCropDetails() {
   const API = useMemo(
     () =>
       axios.create({
-        baseURL: "http://localhost:8000/api/search",
+        baseURL: `${import.meta.env.VITE_API_BASE_URL}/api/search`,
         headers: { Authorization: `Bearer ${token}` },
       }),
     [token]

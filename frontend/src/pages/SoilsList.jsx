@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, useLocation, useNavigationType } from "react-router-dom";
 import "../styles/public/SoilsList.css";
 
-const BACKEND = "http://localhost:8000";
+const BACKEND = import.meta.env.VITE_API_BASE_URL;
 
 const toImageUrl = (path) => {
   if (!path) return "";
