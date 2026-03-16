@@ -1,16 +1,38 @@
+import os
+from urllib.parse import quote_plus
+
+import certifi
+from dotenv import load_dotenv
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
-from urllib.parse import quote_plus
-import os
-import certifi
 
 
-username = os.getenv("MONGO_USERNAME", "Lohit")
-password = quote_plus(os.getenv("MONGO_PASSWORD", "Lohit@8019"))
-default_uri = (
-    f"mongodb+srv://{username}:{password}@agrodb.yxv6oxo.mongodb.net/?appName=Agrodb"
-)
-uri = os.getenv("MONGO_URI", default_uri)
+load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', '.env'))
+
+
+def _build_default_uri(username: str, password: str) -> str:
+    quoted_password = quote_plus(password)
+    return f"mongodb+srv://{username}:{quoted_password}@agrodb.yxv6oxo.mongodb.net/?appName=Agrodb"
+
+
+def _resolve_mongo_uri() -> str:
+    username = os.getenv("MONGO_USERNAME", "Lohit")
+    password = os.getenv("MONGO_PASSWORD", "Lohit@8019")
+    env_uri = (os.getenv("MONGO_URI") or "").strip()
+
+    if not env_uri:
+        return _build_default_uri(username, password)
+
+    resolved_uri = env_uri
+    if "<db_password>" in resolved_uri:
+        resolved_uri = resolved_uri.replace("<db_password>", quote_plus(password))
+    if "<db_username>" in resolved_uri:
+        resolved_uri = resolved_uri.replace("<db_username>", username)
+
+    return resolved_uri
+
+
+uri = _resolve_mongo_uri()
 
 server_selection_timeout_ms = int(os.getenv("MONGO_SERVER_SELECTION_TIMEOUT_MS", "8000"))
 connect_timeout_ms = int(os.getenv("MONGO_CONNECT_TIMEOUT_MS", "8000"))
