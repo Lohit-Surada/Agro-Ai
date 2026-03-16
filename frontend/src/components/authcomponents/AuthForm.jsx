@@ -57,7 +57,7 @@ const AuthForm = ({ type }) => {
           password: formData.password,
         });
         if (response.data.requires_recovery_setup) {
-          navigate("/admin/recovery-setup", {
+          navigate("/superadmin/recovery-setup", {
             replace: true,
             state: {
               setupToken: response.data.setup_token,
@@ -213,7 +213,7 @@ const AuthForm = ({ type }) => {
             {showResetPassword && (
               <p className="auth-switch-text">
                 Forgot password?{" "}
-                <a href="/admin/reset-password">Reset Password</a>
+                <a href="/superadmin/reset-password">Reset Password</a>
               </p>
             )}
           </>

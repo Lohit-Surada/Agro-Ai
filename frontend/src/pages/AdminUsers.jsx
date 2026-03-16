@@ -9,7 +9,7 @@ function AdminUsers() {
 
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
-  const canManageUsers = auth?.role === "admin";
+  const canManageUsers = auth?.role === "admin" || auth?.role === "superadmin";
 
   useEffect(() => {
     if (token && canManageUsers) {
@@ -41,7 +41,7 @@ function AdminUsers() {
   };
 
   if (!token || !canManageUsers) {
-    return <p>You must be logged in as admin to view this page.</p>;
+    return <p>You must be logged in as admin or superadmin to view this page.</p>;
   }
 
   return (

@@ -25,15 +25,13 @@ const toImageUrl = (path) => {
 
 const CropSearch = () => {
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
-  const [hasSearched, setHasSearched] = useState(false);
+  const [results, setResults] = useState({ crops: [], soils: [] });
   const [selectedDetail, setSelectedDetail] = useState(null);
   const [searchParams] = useSearchParams();
 
   const performSearch = async (q) => {
     if (!q.trim()) {
-      setResults([]);
-      setHasSearched(false);
+      setResults({ crops: [], soils: [] });
       return;
     }
 
@@ -41,14 +39,13 @@ const CropSearch = () => {
       const res = await axios.get(
         `${BACKEND_ORIGIN}/api/search/?q=${encodeURIComponent(q)}`
       );
-      const crops = (res.data?.crops || []).map((c) => ({ type: "crop", data: c }));
-      const soils = (res.data?.soils || []).map((s) => ({ type: "soil", data: s }));
-      setResults([...crops, ...soils]);
+      setResults({
+        crops: res.data?.crops || [],
+        soils: res.data?.soils || [],
+      });
     } catch (err) {
       console.error("Search failed", err.response?.data || err);
-      setResults([]);
-    } finally {
-      setHasSearched(true);
+      setResults({ crops: [], soils: [] });
     }
   };
 
@@ -96,43 +93,55 @@ const CropSearch = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      {hasSearched && results.length === 0 && (
-        <p className="no-results-msg">No results found.</p>
-      )}
+      <h3 className="results-section-title">Crops</h3>
+      {results.crops.length === 0 && <p>No crop results found.</p>}
+      {results.crops.map((crop) => (
+        <article
+          className="result-item result-clickable-card"
+          key={crop._id || `${crop.crop_name}-${crop.soil_type}`}
+          onClick={() => setSelectedDetail({ type: "crop", data: crop })}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              setSelectedDetail({ type: "crop", data: crop });
+            }
+          }}
+        >
+          {toImageUrl(crop.image) && (
+            <img className="result-thumb" src={toImageUrl(crop.image)} alt={asText(crop.crop_name)} />
+          )}
+          <div className="result-content">
+            <h4>{asDisplay(crop.crop_name)}</h4>
+            <p>{asDisplay(crop.soil_type)}</p>
+          </div>
+        </article>
+      ))}
 
-      {results.map((item) => {
-        const isCrop = item.type === "crop";
-        const name = isCrop ? asDisplay(item.data.crop_name) : asDisplay(item.data.soil_name);
-        const subtitle = isCrop ? asDisplay(item.data.soil_type) : asDisplay(item.data.soil_type);
-        const imgUrl = toImageUrl(item.data.image);
-        const key = item.data._id || name;
-
-        return (
-          <article
-            className="result-item result-clickable-card"
-            key={key}
-            onClick={() => setSelectedDetail(item)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                setSelectedDetail(item);
-              }
-            }}
-          >
-            {imgUrl && (
-              <img className="result-thumb" src={imgUrl} alt={name} />
-            )}
-            <div className="result-content">
-              <span className={`result-type-badge result-type-badge--${item.type}`}>
-                {isCrop ? "Crop" : "Soil"}
-              </span>
-              <h4>{name}</h4>
-              <p>{subtitle}</p>
-            </div>
-          </article>
-        );
-      })}
+      <h3 className="results-section-title">Soils</h3>
+      {results.soils.length === 0 && <p>No soil results found.</p>}
+      {results.soils.map((soil) => (
+        <article
+          className="result-item result-clickable-card"
+          key={soil._id || soil.soil_name}
+          onClick={() => setSelectedDetail({ type: "soil", data: soil })}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              setSelectedDetail({ type: "soil", data: soil });
+            }
+          }}
+        >
+          {toImageUrl(soil.image) && (
+            <img className="result-thumb" src={toImageUrl(soil.image)} alt={asText(soil.soil_name)} />
+          )}
+          <div className="result-content">
+            <h4>{asDisplay(soil.soil_name)}</h4>
+            <p>{asDisplay(soil.soil_type)}</p>
+          </div>
+        </article>
+      ))}
 
       {selectedDetail && (
         <div className="search-detail-overlay" onClick={() => setSelectedDetail(null)}>

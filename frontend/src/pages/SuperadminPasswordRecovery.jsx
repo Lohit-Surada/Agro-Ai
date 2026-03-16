@@ -36,7 +36,7 @@ const SuperadminPasswordRecovery = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:8000/api/auth/admin/reset-password/", {
+      const response = await axios.post("http://localhost:8000/api/auth/superadmin/reset-password/", {
         reset_token: resetToken,
         new_password: formData.new_password,
       });
@@ -51,7 +51,7 @@ const SuperadminPasswordRecovery = () => {
 
   return (
     <div className="auth-form">
-      <h3>ADMIN PASSWORD RECOVERY</h3>
+      <h3>SUPERADMIN PASSWORD RECOVERY</h3>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {message && <p style={{ color: "green" }}>{message}</p>}
       <form className="recovery-form" onSubmit={handleSubmit} autoComplete="off">

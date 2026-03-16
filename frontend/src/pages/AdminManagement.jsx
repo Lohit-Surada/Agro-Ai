@@ -24,7 +24,7 @@ const AdminManagement = () => {
   };
 
   useEffect(() => {
-    if (token && auth?.role === "admin") fetchAdmins();
+    if (token && (auth?.role === "admin" || auth?.role === "superadmin")) fetchAdmins();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, auth?.role]);
 
@@ -49,7 +49,7 @@ const AdminManagement = () => {
     }
   };
 
-  if (!token || auth?.role !== "admin") {
+  if (!token || (auth?.role !== "admin" && auth?.role !== "superadmin")) {
     return <p>You must be logged in as admin to view this page.</p>;
   }
 
