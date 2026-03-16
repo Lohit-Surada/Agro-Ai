@@ -59,6 +59,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173',
     'http://localhost:4173',
     'http://127.0.0.1:4173',
+    'https://agro-ai-jvak-5nvf3rics-lohit-suradas-projects.vercel.app',
 ]
 CORS_ALLOW_CREDENTIALS = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
