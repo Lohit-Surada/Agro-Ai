@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import bcrypt
 import jwt
 from django.conf import settings
+from pymongo.errors import PyMongoError
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
@@ -311,7 +312,14 @@ def login(request):
     if not login_key or not password:
         return Response({"error": "username and password are required"}, status=400)
 
-    _collection, account = _find_account_by_login_key(login_key)
+    try:
+        _collection, account = _find_account_by_login_key(login_key)
+    except PyMongoError:
+        return Response(
+            {"error": "Authentication service temporarily unavailable. Please try again shortly."},
+            status=503,
+        )
+
     if not account:
         return Response({"error": "Invalid credentials"}, status=401)
 

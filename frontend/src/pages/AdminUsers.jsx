@@ -28,12 +28,12 @@ function AdminUsers() {
     }
   }, [token, canManageUsers]);
 
-  const handleDelete = async (userId) => {
+  const handleDelete = async (username) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/auth/users/${userId}/`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/auth/users/${encodeURIComponent(username)}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUsers((prev) => prev.filter((u) => u.userId !== userId));
+      setUsers((prev) => prev.filter((u) => u.username !== username));
     } catch (err) {
       console.error("Error deleting user", err);
       setError("Failed to delete user");
@@ -50,11 +50,11 @@ function AdminUsers() {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <ul className="user-list">
         {users.map((u) => (
-          <li key={u.userId}>
+          <li key={u.username}>
             <span>
-              {u.userId} {u.email && `(${u.email})`}
+              {u.username} {u.email && `(${u.email})`}
             </span>
-            <button onClick={() => handleDelete(u.userId)}>Delete</button>
+            <button onClick={() => handleDelete(u.username)}>Delete</button>
           </li>
         ))}
       </ul>

@@ -51,12 +51,12 @@ const Dashboard = () => {
     }
   }, [role, token]);
 
-  const handleDelete = async (userId) => {
+  const handleDelete = async (username) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/auth/users/${userId}/`, {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/auth/users/${encodeURIComponent(username)}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUsersList((prev) => prev.filter((u) => u.userId !== userId));
+      setUsersList((prev) => prev.filter((u) => u.username !== username));
     } catch (e) {
       console.error("failed to delete", e);
     }

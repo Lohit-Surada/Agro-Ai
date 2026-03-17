@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+
+
+def _split_csv_env(name: str):
+    value = os.getenv(name, "")
+    return [item.strip() for item in value.split(",") if item.strip()]
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -54,13 +59,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
+default_cors_origins = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'http://localhost:4173',
     'http://127.0.0.1:4173',
-    'https://agro-ai-jvak-5nvf3rics-lohit-suradas-projects.vercel.app',
 ]
+
+CORS_ALLOWED_ORIGINS = list(dict.fromkeys(default_cors_origins + _split_csv_env('CORS_ALLOWED_ORIGINS')))
 CORS_ALLOW_CREDENTIALS = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_SAMESITE = 'Lax'

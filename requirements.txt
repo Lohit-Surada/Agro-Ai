@@ -12,5 +12,6 @@ PyJWT
 numpy
 pandas
 xgboost
+scikit-learn
 tensorflow
 Pillow

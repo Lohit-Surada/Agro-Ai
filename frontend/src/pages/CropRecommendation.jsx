@@ -40,7 +40,8 @@ function CropRecommendation() {
       setResult(res.data.recommended_crop);
     } catch (error) {
       console.error(error);
-      showPopup("Prediction failed", "error");
+      const message = error?.response?.data?.error || "Prediction failed";
+      showPopup(message, "error");
     }
   };
 
