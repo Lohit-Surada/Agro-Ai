@@ -28,6 +28,24 @@ const CropSearch = () => {
   const [results, setResults] = useState({ crops: [], soils: [] });
   const [selectedDetail, setSelectedDetail] = useState(null);
   const [searchParams] = useSearchParams();
+  const searchCards = [
+    ...results.crops.map((crop) => ({
+      type: "crop",
+      data: crop,
+      id: crop._id || `crop-${crop.crop_name}-${crop.soil_type}`,
+      title: asDisplay(crop.crop_name),
+      subtitle: asDisplay(crop.soil_type),
+      image: crop.image,
+    })),
+    ...results.soils.map((soil) => ({
+      type: "soil",
+      data: soil,
+      id: soil._id || `soil-${soil.soil_name}`,
+      title: asDisplay(soil.soil_name),
+      subtitle: asDisplay(soil.soil_type),
+      image: soil.image,
+    })),
+  ];
 
   const performSearch = async (q) => {
     if (!q.trim()) {
@@ -93,52 +111,26 @@ const CropSearch = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      <h3 className="results-section-title">Crops</h3>
-      {results.crops.length === 0 && <p>No crop results found.</p>}
-      {results.crops.map((crop) => (
+      {query.trim() && searchCards.length === 0 && <p className="no-results-msg">No matching results found.</p>}
+      {searchCards.map((item) => (
         <article
           className="result-item result-clickable-card"
-          key={crop._id || `${crop.crop_name}-${crop.soil_type}`}
-          onClick={() => setSelectedDetail({ type: "crop", data: crop })}
+          key={item.id}
+          onClick={() => setSelectedDetail({ type: item.type, data: item.data })}
           role="button"
           tabIndex={0}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
-              setSelectedDetail({ type: "crop", data: crop });
+              setSelectedDetail({ type: item.type, data: item.data });
             }
           }}
         >
-          {toImageUrl(crop.image) && (
-            <img className="result-thumb" src={toImageUrl(crop.image)} alt={asText(crop.crop_name)} />
+          {toImageUrl(item.image) && (
+            <img className="result-thumb" src={toImageUrl(item.image)} alt={asText(item.title)} />
           )}
           <div className="result-content">
-            <h4>{asDisplay(crop.crop_name)}</h4>
-            <p>{asDisplay(crop.soil_type)}</p>
-          </div>
-        </article>
-      ))}
-
-      <h3 className="results-section-title">Soils</h3>
-      {results.soils.length === 0 && <p>No soil results found.</p>}
-      {results.soils.map((soil) => (
-        <article
-          className="result-item result-clickable-card"
-          key={soil._id || soil.soil_name}
-          onClick={() => setSelectedDetail({ type: "soil", data: soil })}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              setSelectedDetail({ type: "soil", data: soil });
-            }
-          }}
-        >
-          {toImageUrl(soil.image) && (
-            <img className="result-thumb" src={toImageUrl(soil.image)} alt={asText(soil.soil_name)} />
-          )}
-          <div className="result-content">
-            <h4>{asDisplay(soil.soil_name)}</h4>
-            <p>{asDisplay(soil.soil_type)}</p>
+            <h4>{item.title}</h4>
+            <p>{item.subtitle}</p>
           </div>
         </article>
       ))}

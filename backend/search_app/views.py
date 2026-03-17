@@ -184,16 +184,7 @@ def search_all(request):
     crops = list(
         crops_collection.find(
             {
-                "$or": [
-                    {"crop_name": {"$regex": safe_query, "$options": "i"}},
-                    {"description": {"$regex": safe_query, "$options": "i"}},
-                    {"season": {"$regex": safe_query, "$options": "i"}},
-                    {"soil_type": {"$regex": safe_query, "$options": "i"}},
-                    {"temperature_celsius": {"$regex": safe_query, "$options": "i"}},
-                    {"ph_range": {"$regex": safe_query, "$options": "i"}},
-                    {"humidity_percent": {"$regex": safe_query, "$options": "i"}},
-                    {"rainfall_mm": {"$regex": safe_query, "$options": "i"}},
-                ]
+                "crop_name": {"$regex": safe_query, "$options": "i"}
             }
         )
     )
@@ -201,16 +192,7 @@ def search_all(request):
     soils = list(
         soils_collection.find(
             {
-                "$or": [
-                    {"soil_name": {"$regex": safe_query, "$options": "i"}},
-                    {"description": {"$regex": safe_query, "$options": "i"}},
-                    {"soil_type": {"$regex": safe_query, "$options": "i"}},
-                    {"ph_level": {"$regex": safe_query, "$options": "i"}},
-                    {"nutrient_content.nitrogen": {"$regex": safe_query, "$options": "i"}},
-                    {"nutrient_content.phosphorus": {"$regex": safe_query, "$options": "i"}},
-                    {"nutrient_content.potassium": {"$regex": safe_query, "$options": "i"}},
-                    {"suitable_crops": {"$regex": safe_query, "$options": "i"}},
-                ]
+                "soil_name": {"$regex": safe_query, "$options": "i"}
             }
         )
     )
