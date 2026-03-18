@@ -17,6 +17,11 @@ import os
 def _split_csv_env(name: str):
     value = os.getenv(name, "")
     return [item.strip() for item in value.split(",") if item.strip()]
+
+
+def _is_truthy_env(name: str, default: str = "false"):
+    value = os.getenv(name, default)
+    return str(value).strip().lower() in {"1", "true", "yes", "on"}
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -64,12 +69,27 @@ default_cors_origins = [
     'http://127.0.0.1:5173',
     'http://localhost:4173',
     'http://127.0.0.1:4173',
+    'https://agro-ai.vercel.app',
+    'https://agroai.vercel.app',
 ]
 
 CORS_ALLOWED_ORIGINS = list(dict.fromkeys(default_cors_origins + _split_csv_env('CORS_ALLOWED_ORIGINS')))
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r'^https://[a-z0-9-]+\.vercel\.app$',
+]
 CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = list(
+    dict.fromkeys(CORS_ALLOWED_ORIGINS + _split_csv_env('CSRF_TRUSTED_ORIGINS'))
+)
+
+IS_PRODUCTION = _is_truthy_env('IS_PRODUCTION') or bool(os.getenv('RENDER_EXTERNAL_URL'))
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'None' if IS_PRODUCTION else 'Lax'
+SESSION_COOKIE_SECURE = IS_PRODUCTION
+CSRF_COOKIE_SAMESITE = 'None' if IS_PRODUCTION else 'Lax'
+CSRF_COOKIE_SECURE = IS_PRODUCTION
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
