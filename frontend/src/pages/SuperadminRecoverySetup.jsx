@@ -40,7 +40,7 @@ const SuperadminRecoverySetup = () => {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/admin/recovery-setup/`, {
+      const response = await axios.post(`https://agro-aip-3.onrender.com/api/auth/admin/recovery-setup/`, {
         setup_token: setupToken,
         ...formData,
       });

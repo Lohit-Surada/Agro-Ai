@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const AuthContext = createContext();
 
-const AUTH_API = `${import.meta.env.VITE_API_BASE_URL}/api/auth`;
+const AUTH_API = `https://agro-aip-3.onrender.com/api/auth`;
 const emptyAuth = { token: null, role: null, username: null };
 
 export const AuthProvider = ({ children }) => {

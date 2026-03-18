@@ -44,7 +44,7 @@ const AuthForm = ({ type }) => {
     }
 
     setError("");
-    const baseURL = `${import.meta.env.VITE_API_BASE_URL}/api/auth`;
+    const baseURL = `https://agro-aip-3.onrender.com/api/auth`;
 
     try {
       let response;

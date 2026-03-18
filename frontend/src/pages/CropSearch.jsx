@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import "../styles/search/CropSearch.css";
 
-const BACKEND_ORIGIN = import.meta.env.VITE_API_BASE_URL;
+const BACKEND_ORIGIN = "https://agro-aip-3.onrender.com";
 
 const asText = (value) => {
   if (Array.isArray(value)) return value.join(", ");

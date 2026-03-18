@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminSoils.css";
 
-const BACKEND_ORIGIN = import.meta.env.VITE_API_BASE_URL;
+const BACKEND_ORIGIN = "https://agro-aip-3.onrender.com";
 
 const createEmptyForm = () => ({
   image: null,

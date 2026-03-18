@@ -28,7 +28,7 @@ function SoilDetection() {
 
     try {
       setIsPredicting(true);
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/soil/detect/`, formData, {
+      const response = await axios.post(`https://agro-aip-3.onrender.com/api/soil/detect/`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setResult(response.data);

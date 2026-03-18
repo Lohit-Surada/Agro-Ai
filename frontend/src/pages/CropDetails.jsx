@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "../styles/home/AdminCrops.css";
 
-const BACKEND = import.meta.env.VITE_API_BASE_URL;
+const BACKEND = "https://agro-aip-3.onrender.com";
 
 const toImageUrl = (path) => {
   if (!path) return "";

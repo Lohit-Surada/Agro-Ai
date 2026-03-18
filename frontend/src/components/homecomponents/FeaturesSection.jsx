@@ -5,7 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import "../../styles/home/FeaturesSection.css";
 
-const API = `${import.meta.env.VITE_API_BASE_URL}/api`;
+const API = `https://agro-aip-3.onrender.com/api`;
 
 const FeaturesSection = () => {
   const navigate = useNavigate();
