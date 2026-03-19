@@ -1,5 +1,5 @@
 // src/components/homecomponents/Hero.jsx
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { usePopup } from "../../context/PopupContext";
@@ -10,6 +10,36 @@ const Hero = () => {
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
   const { showPopup } = usePopup();
+  const animatedWords = ["AgroAI", "AI Insights", "Smart Farming"];
+  const [wordIndex, setWordIndex] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = animatedWords[wordIndex];
+    const speed = isDeleting ? 85 : 145;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        const nextText = currentWord.slice(0, typedText.length + 1);
+        setTypedText(nextText);
+
+        if (nextText === currentWord) {
+          setTimeout(() => setIsDeleting(true), 1300);
+        }
+      } else {
+        const nextText = currentWord.slice(0, typedText.length - 1);
+        setTypedText(nextText);
+
+        if (nextText.length === 0) {
+          setIsDeleting(false);
+          setWordIndex((prev) => (prev + 1) % animatedWords.length);
+        }
+      }
+    }, speed);
+
+    return () => clearTimeout(timer);
+  }, [typedText, isDeleting, wordIndex]);
 
   const requireLoginOrNavigate = (path) => {
     if (!auth?.token) {
@@ -40,31 +70,39 @@ const Hero = () => {
       <section className="hero">
         <div className="hero-overlay">
           <div className="hero-content">
-            <div className="hero-badge">
-              <span className="hero-badge-dot" />
-              AI-Powered Agriculture Platform
+            <div className="hero-top-content">
+              <div className="hero-badge">
+                <span className="hero-badge-dot" />
+                AI-Powered Agriculture Platform
+              </div>
+              <h1 className="hero-heading">
+                Grow Smarter with{" "}
+                <span className="hero-highlight hero-typed-word" aria-label={animatedWords[wordIndex]}>
+                  {typedText || "AgroAI"}
+                  <span className="hero-cursor" aria-hidden="true">|</span>
+                </span>
+              </h1>
             </div>
-            <h1 className="hero-heading">
-              Grow Smarter with <span className="hero-highlight">AgroAI</span>
-            </h1>
-            <p className="hero-subtitle">
-              Intelligent soil analysis and personalized crop recommendations,
-              powered by advanced machine learning
-            </p>
-            <div className="hero-stats-row">
-              <div className="hero-stat-item">
-                <span className="hero-stat-num">95%+</span>
-                <span className="hero-stat-lbl">Accuracy</span>
-              </div>
-              <div className="hero-stat-sep" />
-              <div className="hero-stat-item">
-                <span className="hero-stat-num">500+</span>
-                <span className="hero-stat-lbl">Crop Varieties</span>
-              </div>
-              <div className="hero-stat-sep" />
-              <div className="hero-stat-item">
-                <span className="hero-stat-num">Instant</span>
-                <span className="hero-stat-lbl">AI Results</span>
+            <div className="hero-bottom-content">
+              <p className="hero-subtitle">
+                Intelligent soil analysis and personalized crop recommendations,
+                powered by advanced machine learning
+              </p>
+              <div className="hero-stats-row">
+                <div className="hero-stat-item">
+                  <span className="hero-stat-num">95%+</span>
+                  <span className="hero-stat-lbl">Accuracy</span>
+                </div>
+                <div className="hero-stat-sep" />
+                <div className="hero-stat-item">
+                  <span className="hero-stat-num">500+</span>
+                  <span className="hero-stat-lbl">Crop Varieties</span>
+                </div>
+                <div className="hero-stat-sep" />
+                <div className="hero-stat-item">
+                  <span className="hero-stat-num">Instant</span>
+                  <span className="hero-stat-lbl">AI Results</span>
+                </div>
               </div>
             </div>
           </div>

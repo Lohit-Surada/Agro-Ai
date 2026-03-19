@@ -5,7 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import "../../styles/home/FeaturesSection.css";
 
-const API = `https://agro-aip-3.onrender.com/api`;
+const API_BASE = "http://localhost:8000/api";
 
 const FeaturesSection = () => {
   const navigate = useNavigate();
@@ -17,15 +17,15 @@ const FeaturesSection = () => {
   const [userCount,  setUserCount]  = useState(null);
 
   useEffect(() => {
-    axios.get(`${API}/search/crops/`)
+    axios.get(`${API_BASE}/search/crops/`)
       .then(r => setCropCount(r.data.length))
       .catch(() => setCropCount(0));
 
-    axios.get(`${API}/search/soils/`)
+    axios.get(`${API_BASE}/search/soils/`)
       .then(r => setSoilCount(r.data.length))
       .catch(() => setSoilCount(0));
 
-    axios.get(`${API}/auth/stats/`)
+    axios.get(`${API_BASE}/auth/stats/`)
       .then(r => setUserCount(r.data.users || 0))
       .catch(() => setUserCount(0));
   }, []);
@@ -134,9 +134,9 @@ const FeaturesSection = () => {
           <div className="fdc-body">
             <div className="fdc-count-pill fdc-pill--soils">
               <span className="fdc-count-num">{soilCount === null ? "…" : soilCount}</span>
-              <span className="fdc-count-lbl">Soil Types</span>
+              <span className="fdc-count-lbl">Soils</span>
             </div>
-            <h3 className="fdc-title">Soil Database</h3>
+            <h3 className="fdc-title">Soil Library</h3>
             <p className="fdc-desc">
               Discover all soil types our deep-learning model can detect — with pH ranges and recommended crops for each.
             </p>

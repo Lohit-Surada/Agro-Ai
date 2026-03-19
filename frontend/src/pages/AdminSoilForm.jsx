@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminSoils.css";
 
-const BACKEND_ORIGIN = "https://agro-aip-3.onrender.com";
+const BACKEND_ORIGIN = "http://localhost:8000";
 
 const createEmptyForm = () => ({
   image: null,
@@ -162,9 +162,6 @@ function AdminSoilForm() {
     <div className="admin-soils-page">
       <div className="admin-soils-header">
         <h2>{isEdit ? "Edit Soil" : "Add Soil"}</h2>
-        <button className="secondary-btn" onClick={() => navigate(isEdit ? `/admin/soils/${soilId}` : "/admin/soils")}>
-          Cancel
-        </button>
       </div>
 
       {loading && <p className="admin-soils-empty">Loading form...</p>}
@@ -184,13 +181,8 @@ function AdminSoilForm() {
             </label>
 
             <label>
-              Soil Type
-              <input name="soil_type" value={form.soil_type} onChange={handleChange} />
-            </label>
-
-            <label>
               pH Level
-              <input type="text" inputMode="decimal" name="ph_level" value={form.ph_level} placeholder="pH Level" onChange={handleChange} />
+              <input type="text" inputMode="decimal" name="ph_level" value={form.ph_level} onChange={handleChange} />
             </label>
 
             <label>
@@ -200,7 +192,6 @@ function AdminSoilForm() {
                 inputMode="decimal"
                 name="nitrogen"
                 value={form.nutrient_content.nitrogen}
-                placeholder="Nitrogen"
                 onChange={handleNutrientChange}
               />
             </label>
@@ -212,7 +203,6 @@ function AdminSoilForm() {
                 inputMode="decimal"
                 name="phosphorus"
                 value={form.nutrient_content.phosphorus}
-                placeholder="Phosphorus"
                 onChange={handleNutrientChange}
               />
             </label>
@@ -224,7 +214,6 @@ function AdminSoilForm() {
                 inputMode="decimal"
                 name="potassium"
                 value={form.nutrient_content.potassium}
-                placeholder="Potassium"
                 onChange={handleNutrientChange}
               />
             </label>
@@ -242,9 +231,18 @@ function AdminSoilForm() {
 
           {previewUrl && <img src={previewUrl} alt="preview" className="form-preview" />}
 
-          <button className="primary-btn form-submit" type="submit" disabled={saving}>
-            {saving ? "Saving..." : isEdit ? "Update Soil" : "Create Soil"}
-          </button>
+          <div className="soil-form-actions">
+            <button className="primary-btn form-submit" type="submit" disabled={saving}>
+              {saving ? "Saving..." : isEdit ? "Update Soil" : "Create Soil"}
+            </button>
+            <button
+              type="button"
+              className="danger-btn form-cancel"
+              onClick={() => navigate(isEdit ? `/admin/soils/${soilId}` : "/admin/soils")}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
     </div>

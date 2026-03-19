@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminCrops.css";
 
-const BACKEND_ORIGIN = "https://agro-aip-3.onrender.com";
+const BACKEND_ORIGIN = "http://localhost:8000";
 
 const createEmptyForm = () => ({
   image: null,
@@ -42,7 +42,7 @@ function AdminCropForm() {
   const API = useMemo(
     () =>
       axios.create({
-        baseURL: `https://agro-aip-3.onrender.com/api/search`,
+        baseURL: `http://localhost:8000/api/search`,
         headers: { Authorization: `Bearer ${token}` },
       }),
     [token]
@@ -159,9 +159,6 @@ function AdminCropForm() {
     <div className="admin-crops-page">
       <div className="admin-crops-header">
         <h2>{isEdit ? "Edit Crop" : "Add Crop"}</h2>
-        <button className="secondary-btn" onClick={() => navigate(isEdit ? `/admin/crops/${cropId}` : "/admin/crops")}>
-          Cancel
-        </button>
       </div>
 
       {loading && <p className="admin-crops-empty">Loading form...</p>}
@@ -192,7 +189,6 @@ function AdminCropForm() {
                 inputMode="numeric"
                 name="crop_duration_days"
                 value={form.crop_duration_days}
-                placeholder="Crop Duration (Days)"
                 onChange={handleChange}
               />
             </label>
@@ -209,24 +205,23 @@ function AdminCropForm() {
                 inputMode="decimal"
                 name="temperature_celsius"
                 value={form.temperature_celsius}
-                placeholder="Temperature (C)"
                 onChange={handleChange}
               />
             </label>
 
             <label>
               pH Range
-              <input type="text" inputMode="decimal" name="ph_range" value={form.ph_range} placeholder="pH Range" onChange={handleChange} />
+              <input type="text" inputMode="decimal" name="ph_range" value={form.ph_range} onChange={handleChange} />
             </label>
 
             <label>
               Humidity Percent
-              <input type="text" inputMode="decimal" name="humidity_percent" value={form.humidity_percent} placeholder="Humidity (%)" onChange={handleChange} />
+              <input type="text" inputMode="decimal" name="humidity_percent" value={form.humidity_percent} onChange={handleChange} />
             </label>
 
             <label>
               Rainfall (mm)
-              <input type="text" inputMode="decimal" name="rainfall_mm" value={form.rainfall_mm} placeholder="Rainfall (mm)" onChange={handleChange} />
+              <input type="text" inputMode="decimal" name="rainfall_mm" value={form.rainfall_mm} onChange={handleChange} />
             </label>
           </div>
 
@@ -237,9 +232,18 @@ function AdminCropForm() {
 
           {previewUrl && <img src={previewUrl} alt="preview" className="form-preview" />}
 
-          <button className="primary-btn form-submit" type="submit" disabled={saving}>
-            {saving ? "Saving..." : isEdit ? "Update Crop" : "Create Crop"}
-          </button>
+          <div className="crop-form-actions">
+            <button className="primary-btn form-submit" type="submit" disabled={saving}>
+              {saving ? "Saving..." : isEdit ? "Update Crop" : "Create Crop"}
+            </button>
+            <button
+              type="button"
+              className="danger-btn form-cancel"
+              onClick={() => navigate(isEdit ? `/admin/crops/${cropId}` : "/admin/crops")}
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       )}
     </div>

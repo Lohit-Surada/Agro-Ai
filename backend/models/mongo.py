@@ -7,7 +7,11 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
 
-load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', '.env'))
+backend_dir = os.path.dirname(os.path.dirname(__file__))
+project_root_dir = os.path.dirname(backend_dir)
+
+load_dotenv(os.path.join(backend_dir, ".env"))
+load_dotenv(os.path.join(project_root_dir, ".env"))
 
 
 def _build_default_uri(username: str, password: str) -> str:
@@ -15,18 +19,27 @@ def _build_default_uri(username: str, password: str) -> str:
     return f"mongodb+srv://{username}:{quoted_password}@agrodb.yxv6oxo.mongodb.net/?appName=Agrodb"
 
 
+def _require_env(name: str) -> str:
+    value = (os.getenv(name) or "").strip()
+    if not value:
+        raise RuntimeError(f"Missing required environment variable: {name}")
+    return value
+
+
 def _resolve_mongo_uri() -> str:
-    username = os.getenv("MONGO_USERNAME", "Lohit")
-    password = os.getenv("MONGO_PASSWORD", "Lohit@8019")
     env_uri = (os.getenv("MONGO_URI") or "").strip()
 
     if not env_uri:
+        username = _require_env("MONGO_USERNAME")
+        password = _require_env("MONGO_PASSWORD")
         return _build_default_uri(username, password)
 
     resolved_uri = env_uri
     if "<db_password>" in resolved_uri:
+        password = _require_env("MONGO_PASSWORD")
         resolved_uri = resolved_uri.replace("<db_password>", quote_plus(password))
     if "<db_username>" in resolved_uri:
+        username = _require_env("MONGO_USERNAME")
         resolved_uri = resolved_uri.replace("<db_username>", username)
 
     return resolved_uri

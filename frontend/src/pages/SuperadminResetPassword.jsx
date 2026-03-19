@@ -24,7 +24,7 @@ const SuperadminResetPassword = () => {
     setError("");
 
     try {
-      const response = await axios.post(`https://agro-aip-3.onrender.com/api/auth/superadmin/verify-recovery/`, formData);
+      const response = await axios.post(`http://localhost:8000/api/auth/superadmin/verify-recovery/`, formData);
       navigate("/superadmin/password-recovery", {
         replace: true,
         state: { resetToken: response.data?.reset_token },

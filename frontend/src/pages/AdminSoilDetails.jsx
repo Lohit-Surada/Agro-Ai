@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminSoils.css";
 
-const BACKEND_ORIGIN = "https://agro-aip-3.onrender.com";
+const BACKEND_ORIGIN = "http://localhost:8000";
 
 const toImageUrl = (path) => {
   if (!path) return "";

@@ -67,6 +67,8 @@
   will-change: transform;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .fs-card:hover {
@@ -120,6 +122,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
+  text-align: center;
 }
 
 /* Count pill */
@@ -156,6 +160,7 @@
   color: rgba(185, 235, 150, 0.75);
   margin: 0;
   flex: 1;
+  text-align: center;
 }
 
 /* View-all button */
@@ -168,7 +173,7 @@
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  align-self: flex-start;
+  align-self: center;
 }
 .fdc-btn--crop {
   border-color: #7ee84e;
@@ -613,12 +618,39 @@
   .features-section { padding: 64px 20px 56px; }
 }
 @media (max-width: 600px) {
-  .fs-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+  .fs-grid {
+    grid-template-columns: 1fr;
+    max-width: 444px;
+    margin-inline: auto;
+    gap: 20px;
+  }
   .fs-title { font-size: 24px; }
   .fs-subtitle { font-size: 14.5px; }
-  .features-section { padding: 48px 16px 40px; }
+  .features-section { padding: 46px 18px 40px; }
   .fsa-panel { padding: 20px 18px; }
-  .fs-card { padding: 28px 20px 24px; }
+  .fs-card {
+    width: 100%;
+    max-width: 432px;
+    margin-inline: auto;
+    padding: 26px 18px 22px;
+  }
+}
+
+@media (max-width: 520px) {
+  .fs-grid {
+    max-width: 424px;
+    gap: 18px;
+  }
+
+  .features-section {
+    padding: 44px 16px 38px;
+  }
+
+  .fs-card {
+    width: 100%;
+    max-width: 410px;
+    padding: 24px 16px 20px;
+  }
 }
 @media (max-width: 400px) {
   .fs-title { font-size: 21px; }

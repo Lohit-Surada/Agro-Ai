@@ -17,7 +17,7 @@ function CropRecommendation() {
 
   const [result, setResult] = useState("");
   const API = axios.create({
-    baseURL: `https://agro-aip-3.onrender.com/api`,
+    baseURL: `http://localhost:8000/api`,
   });
 
   const handleChange = (e) => {

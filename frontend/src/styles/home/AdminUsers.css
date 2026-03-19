@@ -2,33 +2,162 @@
 .admin-users-page {
   max-width: 600px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1.2rem;
+  color: #182022;
 }
 
 .admin-users-page h2 {
   color: #1f8f4e;
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
 }
 
 .user-list {
   list-style: none;
-  color: #e74c3c;
   padding: 0;
-  margin-top: 1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .user-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #1d14d4;
+  padding: 0.85rem 1rem;
+  background: #f8fafb;
+  border: 1px solid #d6e4e8;
+  border-radius: 12px;
+  gap: 0.75rem;
+  box-shadow: 0 2px 8px rgba(20, 33, 45, 0.05);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.user-list li:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(20, 33, 45, 0.08);
+  border-color: #8cb7b1;
+}
+
+.user-list li span {
+  color: #2c3e50;
+  font-size: 0.95rem;
+  font-weight: 500;
+  flex: 1;
+  word-break: break-word;
 }
 
 .user-list button {
-  background: #e74c3c;
+  background: linear-gradient(135deg, #e15757, #dc4f4f);
   color: white;
   border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
+  flex-shrink: 0;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(225, 87, 87, 0.2);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  font-size: 0.9rem;
+}
+
+.user-list button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(225, 87, 87, 0.28);
+}
+
+.user-list button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .admin-users-page {
+    padding: 1rem 0.85rem;
+  }
+
+  .admin-users-page h2 {
+    font-size: 1.35rem;
+  }
+
+  .user-list {
+    gap: 0.65rem;
+  }
+
+  .user-list li {
+    padding: 0.75rem 0.85rem;
+    flex-wrap: nowrap;
+  }
+
+  .user-list li span {
+    font-size: 0.88rem;
+    flex: 1;
+  }
+
+  .user-list button {
+    flex: 0 0 auto;
+    padding: 0.52rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-users-page {
+    padding: 0.85rem 0.62rem;
+  }
+
+  .admin-users-page h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .user-list {
+    gap: 0.56rem;
+  }
+
+  .user-list li {
+    padding: 0.68rem 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .user-list li span {
+    font-size: 0.8rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .user-list button {
+    width: auto;
+    min-width: 76px;
+    padding: 0.4rem 0.56rem;
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .admin-users-page {
+    padding: 0.75rem 0.52rem;
+  }
+
+  .admin-users-page h2 {
+    font-size: 1.05rem;
+  }
+
+  .user-list li {
+    padding: 0.62rem 0.65rem;
+  }
+
+  .user-list li span {
+    font-size: 0.72rem;
+  }
+
+  .user-list button {
+    min-width: 70px;
+    font-size: 0.68rem;
+    padding: 0.34rem 0.48rem;
+  }
 }

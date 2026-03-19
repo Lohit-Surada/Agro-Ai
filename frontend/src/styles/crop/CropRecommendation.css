@@ -7,7 +7,7 @@
   min-height: calc(100vh - 80px);
   display: grid;
   place-items: center;
-  padding: 2rem 1rem 4rem;
+  padding: 2rem 1rem 3rem;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(145deg, #040f02 0%, #0a1e05 35%, #0d2607 65%, #132e0a 100%);
   position: relative;
@@ -32,7 +32,8 @@
    MAIN CARD
 ════════════════════════════════════════════ */
 .crop-reco-card {
-  width: min(480px, 94vw);
+  width: min(560px, 94vw);
+  box-sizing: border-box;
   background: rgba(8, 20, 6, 0.82);
   backdrop-filter: blur(18px) saturate(1.5);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
@@ -79,7 +80,8 @@
 .crop-reco-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 0.8rem;
+  width: 100%;
 }
 
 /* Last item (rainfall) + button span full width */
@@ -230,6 +232,45 @@
    RESPONSIVE
 ════════════════════════════════════════════ */
 @media (max-width: 440px) {
+  .crop-reco-page {
+    padding: 1.35rem 0.75rem 2rem;
+  }
+
+  .crop-reco-card {
+    padding: 1.3rem 1rem;
+    border-radius: 16px;
+  }
+
+  .crop-reco-card h2 {
+    font-size: 1.38rem;
+  }
+
+  .crop-reco-subtitle {
+    font-size: 0.84rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .crop-reco-form input {
+    padding: 0.68rem 0.75rem;
+    font-size: 0.88rem;
+  }
+
+  .crop-reco-btn {
+    font-size: 0.92rem;
+    padding: 0.78rem 0.9rem;
+  }
+
+  .crop-reco-result p {
+    font-size: 1.08rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .crop-reco-card {
+    width: min(520px, 96vw);
+    padding: 1.4rem 1.1rem;
+  }
+
   .crop-reco-form {
     grid-template-columns: 1fr;
   }
@@ -239,11 +280,38 @@
     grid-column: 1;
   }
 
-  .crop-reco-card {
-    padding: 1.5rem 1.2rem;
+  .crop-hero-badge {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crop-reco-page {
+    padding: 1.1rem 0.62rem 1.6rem;
   }
 
-  .crop-reco-card h2 {
-    font-size: 1.5rem;
+  .crop-reco-card {
+    width: 96vw;
+    max-width: 460px;
+    border-radius: 14px;
+    padding: 1.1rem 0.82rem;
+  }
+
+  .crop-reco-form {
+    gap: 0.62rem;
+  }
+
+  .crop-reco-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 0.64rem 0.7rem;
+    font-size: 0.86rem;
+  }
+
+  .crop-reco-btn {
+    width: 100%;
+    min-width: 0;
+    padding: 0.72rem 0.8rem;
+    font-size: 0.9rem;
   }
 }

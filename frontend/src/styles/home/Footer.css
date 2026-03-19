@@ -414,7 +414,7 @@
 }
 
 .fm-col-title {
-  font-size: 11.5px;
+  font-size: clamp(11px, 1.8vw, 12.5px);
   font-weight: 700;
   color: rgba(255,255,255,0.38);
   text-transform: uppercase;
@@ -473,7 +473,9 @@
   align-items: center;
   gap: 8px;
   color: rgba(255,255,255,0.62);
-  font-size: 13.5px;
+  font-size: clamp(12px, 2.2vw, 13.5px);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 /* Coloured soil-type dots */
@@ -501,11 +503,12 @@
 }
 
 .fm-fact-list li {
-  font-size: 13px;
+  font-size: clamp(11px, 2.3vw, 13px);
   color: rgba(255,255,255,0.52);
-  line-height: 1.55;
+  line-height: clamp(1.45, 1.2vw, 1.6);
   padding-left: 12px;
   border-left: 2px solid rgba(74, 220, 146, 0.35);
+  overflow-wrap: anywhere;
 }
 
 .fm-fact-list li strong {
@@ -556,6 +559,17 @@
   .fm-brand { grid-column: 1 / -1; }
 }
 
+@media (max-width: 760px) {
+  .fm-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .fm-brand {
+    grid-column: auto;
+  }
+}
+
 @media (max-width: 640px) {
   .fb-grid       { grid-template-columns: 1fr; }
   .am-grid      { grid-template-columns: 1fr; }
@@ -565,7 +579,7 @@
   .sec-subtitle { font-size: 14.5px; }
   .fb-section, .am-section { padding: 48px 16px 40px; }
   .footer-highlights { padding: 40px 16px; }
-  .fm-inner   { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .fm-inner   { grid-template-columns: 1fr; gap: 18px; }
   .footer-main { padding: 44px 16px 0; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
   .section-header { margin-bottom: 36px; }

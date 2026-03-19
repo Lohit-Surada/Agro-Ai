@@ -4,7 +4,7 @@ import { useNavigate, useLocation, useNavigationType } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminSoils.css";
 
-const BACKEND_ORIGIN = "https://agro-aip-3.onrender.com";
+const BACKEND_ORIGIN = "http://localhost:8000";
 
 const toImageUrl = (path) => {
   if (!path) return "";
@@ -85,7 +85,7 @@ function AdminSoils() {
     <div className="admin-soils-page">
       <div className="admin-soils-header">
         <h2>Manage Soils</h2>
-        <button className="primary-btn" onClick={() => navigate("/admin/soils/new")}>
+        <button className="primary-btn admin-soils-add-btn" onClick={() => navigate("/admin/soils/new")}>
           Add Soil
         </button>
       </div>

@@ -327,10 +327,65 @@
 
 @media (max-width: 680px) {
   .navbar {
+    height: 62px;
+    flex-wrap: nowrap;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .nav-links {
+    order: 2;
+    flex-wrap: nowrap;
+    width: auto;
+    min-width: 0;
+    gap: 8px;
+  }
+  .navbar-right { order: 2; margin-left: auto; }
+  .navbar-logo span { font-size: 17px; }
+  .navbar-logo-img { width: 30px; height: 30px; }
+  .search-slot { margin-right: 2px; }
+  .search-form { gap: 4px; }
+  .search-bar {
+    width: min(150px, 33vw);
+    max-width: 150px;
+    padding: 6px 10px;
+    font-size: 12.5px;
+  }
+  .search-form button {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  .nav-links a {
+    font-size: 12px;
+    padding: 2px 1px;
+  }
+  .profile-avatar {
+    padding: 4px 8px 4px 4px;
+  }
+  .avatar-initials {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 460px) {
+  .search-bar {
+    width: min(128px, 30vw);
+    max-width: 128px;
+  }
+  .nav-links {
+    gap: 6px;
+  }
+  .nav-links a {
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar {
     height: auto;
     flex-wrap: wrap;
     padding: 10px 14px;
-    gap: 8px;
   }
   .nav-links {
     order: 3;
@@ -338,10 +393,10 @@
     width: 100%;
   }
   .navbar-right { order: 2; margin-left: auto; }
-  .search-bar { width: min(160px, 45vw); max-width: unset; }
+  .search-bar { width: 130px; max-width: unset; }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 380px) {
   .navbar-logo span { font-size: 18px; }
   .search-bar { width: 130px; }
   .profile-dropdown { right: -10px; min-width: 200px; }

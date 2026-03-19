@@ -44,7 +44,7 @@ const AuthForm = ({ type }) => {
     }
 
     setError("");
-    const baseURL = `https://agro-aip-3.onrender.com/api/auth`;
+    const baseURL = `http://localhost:8000/api/auth`;
 
     try {
       let response;

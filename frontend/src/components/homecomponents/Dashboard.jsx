@@ -20,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const res = await axios.get(`https://agro-aip-3.onrender.com/api/auth/stats/`);
+        const res = await axios.get(`http://localhost:8000/api/auth/stats/`);
         setCounts({
           users: res.data.users,
           admins: res.data.admins,
@@ -39,7 +39,7 @@ const Dashboard = () => {
     if (role === "admin") {
       const fetchUsers = async () => {
         try {
-          const resp = await axios.get(`https://agro-aip-3.onrender.com/api/auth/users/`, {
+          const resp = await axios.get(`http://localhost:8000/api/auth/users/`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUsersList(resp.data.users);
@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   const handleDelete = async (username) => {
     try {
-      await axios.delete(`https://agro-aip-3.onrender.com/api/auth/users/${encodeURIComponent(username)}/`, {
+      await axios.delete(`http://localhost:8000/api/auth/users/${encodeURIComponent(username)}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsersList((prev) => prev.filter((u) => u.username !== username));
