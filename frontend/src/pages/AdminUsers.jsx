@@ -41,7 +41,7 @@ function AdminUsers() {
   };
 
   if (!token || !canManageUsers) {
-    return <p>You must be logged in as admin or superadmin to view this page.</p>;
+    return <p>You must be logged in as admin to view this page.</p>;
   }
 
   return (

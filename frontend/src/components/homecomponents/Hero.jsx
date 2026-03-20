@@ -76,8 +76,11 @@ const Hero = () => {
                 AI-Powered Agriculture Platform
               </div>
               <h1 className="hero-heading">
-                Grow Smarter with{" "}
-                <span className="hero-highlight hero-typed-word" aria-label={animatedWords[wordIndex]}>
+                <span className="hero-heading-line">Grow Smarter with</span>
+                <span
+                  className="hero-highlight hero-typed-word hero-heading-line hero-heading-accent"
+                  aria-label={animatedWords[wordIndex]}
+                >
                   {typedText || "AgroAI"}
                   <span className="hero-cursor" aria-hidden="true">|</span>
                 </span>

@@ -14,9 +14,9 @@ import AdminSoils from "../pages/AdminSoils";
 import AdminSoilDetails from "../pages/AdminSoilDetails";
 import AdminSoilForm from "../pages/AdminSoilForm";
 import ProtectedRoute from "../components/authcomponents/ProtectedRoute";
-import SuperadminRecoverySetup from "../pages/SuperadminRecoverySetup";
-import SuperadminResetPassword from "../pages/SuperadminResetPassword";
-import SuperadminPasswordRecovery from "../pages/SuperadminPasswordRecovery";
+import AdminRecoverySetup from "../pages/AdminRecoverySetup";
+import AdminResetPassword from "../pages/AdminResetPassword";
+import AdminPasswordRecovery from "../pages/AdminPasswordRecovery";
 import CropsList from "../pages/CropsList";
 import SoilsList from "../pages/SoilsList";
 import CropDetails from "../pages/CropDetails";
@@ -34,9 +34,9 @@ const AppRoutes = () => {
       <Route path="/soils" element={<SoilsList />} />
       <Route path="/crop/:cropId" element={<CropDetails />} />
       <Route path="/soil/:soilId" element={<SoilDetails />} />
-      <Route path="/admin/recovery-setup" element={<SuperadminRecoverySetup />} />
-      <Route path="/admin/reset-password" element={<SuperadminResetPassword />} />
-      <Route path="/admin/password-recovery" element={<SuperadminPasswordRecovery />} />
+      <Route path="/admin/recovery-setup" element={<AdminRecoverySetup />} />
+      <Route path="/admin/resetpassword" element={<AdminResetPassword />} />
+      <Route path="/admin/passwordrecovery" element={<AdminPasswordRecovery />} />
       <Route
         path="/soil-detection"
         element={
