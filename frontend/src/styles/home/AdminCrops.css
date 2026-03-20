@@ -16,6 +16,7 @@
 .admin-crops-header h2 {
   margin: 0;
   font-size: 1.75rem;
+  font-weight: 900;
   letter-spacing: 0.02em;
 }
 
@@ -280,14 +281,14 @@
   margin: 0 0 0.2rem;
   font-size: 0.95rem;
   font-weight: 700;
-  color: #2c6a56;
+  color: #1aac0af5;
 }
 
 .info-value {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.45;
-  color: #283235;
+  color: #1a3b04;
 }
 
 .crop-form-card {

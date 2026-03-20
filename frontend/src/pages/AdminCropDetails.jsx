@@ -84,7 +84,6 @@ function AdminCropDetails() {
           </div>
 
           <div className="crop-info-card">
-            <h4 className="info-card-title">Agricultural Crop Information</h4>
             <div className="info-grid">
               <div className="info-row">
                 <p className="info-label">Crop Name</p>
