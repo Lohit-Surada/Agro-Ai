@@ -34,7 +34,6 @@ const CropSearch = () => {
       data: crop,
       id: crop._id || `crop-${crop.crop_name}-${crop.soil_type}`,
       title: asDisplay(crop.crop_name),
-      subtitle: asDisplay(crop.soil_type),
       image: crop.image,
     })),
     ...results.soils.map((soil) => ({
@@ -42,7 +41,6 @@ const CropSearch = () => {
       data: soil,
       id: soil._id || `soil-${soil.soil_name}`,
       title: asDisplay(soil.soil_name),
-      subtitle: asDisplay(soil.soil_type),
       image: soil.image,
     })),
   ];
@@ -130,7 +128,6 @@ const CropSearch = () => {
           )}
           <div className="result-content">
             <h4>{item.title}</h4>
-            <p>{item.subtitle}</p>
           </div>
         </article>
       ))}
@@ -215,35 +212,50 @@ const CropSearch = () => {
                 </div>
 
                 <div className="search-info-card">
-                  <h4 className="search-info-title">Agricultural Soil Information</h4>
                   <div className="search-info-grid">
                     <div className="search-info-row">
                       <p className="search-info-label">Soil Name</p>
                       <p className="search-info-value">{asDisplay(selectedDetail.data.soil_name)}</p>
                     </div>
                     <div className="search-info-row">
-                      <p className="search-info-label">Soil Type</p>
-                      <p className="search-info-value">{asDisplay(selectedDetail.data.soil_type)}</p>
+                      <p className="search-info-label">Texture</p>
+                      <p className="search-info-value">{asDisplay(selectedDetail.data.texture)}</p>
                     </div>
                     <div className="search-info-row">
-                      <p className="search-info-label">pH Level</p>
+                      <p className="search-info-label">pH Level (0-14)</p>
                       <p className="search-info-value">{asDisplay(selectedDetail.data.ph_level)}</p>
                     </div>
                     <div className="search-info-row">
-                      <p className="search-info-label">Nitrogen</p>
+                      <p className="search-info-label">Nitrogen (kg/hectare)</p>
                       <p className="search-info-value">{asDisplay(selectedDetail.data.nutrient_content?.nitrogen)}</p>
                     </div>
                     <div className="search-info-row">
-                      <p className="search-info-label">Phosphorus</p>
+                      <p className="search-info-label">Phosphorus (kg/hectare)</p>
                       <p className="search-info-value">{asDisplay(selectedDetail.data.nutrient_content?.phosphorus)}</p>
                     </div>
                     <div className="search-info-row">
-                      <p className="search-info-label">Potassium</p>
+                      <p className="search-info-label">Potassium (kg/hectare)</p>
                       <p className="search-info-value">{asDisplay(selectedDetail.data.nutrient_content?.potassium)}</p>
+                    </div>
+                    <div className="search-info-row">
+                      <p className="search-info-label">Water Holding Capacity</p>
+                      <p className="search-info-value">{asDisplay(selectedDetail.data.water_holding_capacity)}</p>
+                    </div>
+                    <div className="search-info-row">
+                      <p className="search-info-label">Drainage</p>
+                      <p className="search-info-value">{asDisplay(selectedDetail.data.drainage)}</p>
+                    </div>
+                    <div className="search-info-row">
+                      <p className="search-info-label">Rainfall (in mm)</p>
+                      <p className="search-info-value">{asDisplay(selectedDetail.data.rainfall)}</p>
                     </div>
                     <div className="search-info-row search-info-row-full">
                       <p className="search-info-label">Suitable Crops</p>
                       <p className="search-info-value">{asDisplay(selectedDetail.data.suitable_crops)}</p>
+                    </div>
+                    <div className="search-info-row">
+                      <p className="search-info-label">Region</p>
+                      <p className="search-info-value">{asDisplay(selectedDetail.data.region)}</p>
                     </div>
                     <div className="search-info-row search-info-row-full">
                       <p className="search-info-label">Description</p>

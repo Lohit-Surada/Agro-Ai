@@ -224,7 +224,7 @@
   color: #283235;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 400px) {
   .search-container {
     flex-direction: column;
   }
@@ -248,7 +248,7 @@
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 420px) {
   .result-clickable-card {
     flex-direction: column;
     align-items: stretch;

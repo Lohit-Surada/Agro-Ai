@@ -12,7 +12,7 @@ from .utils import preprocess_image
 from models.mongo import soils_collection
 
 
-UPLOAD_DIR = os.path.join(settings.MEDIA_ROOT, "soil_images")
+UPLOAD_DIR = os.path.join(settings.MEDIA_ROOT, "soil_detect_images")
 
 @api_view(['POST'])
 def detect_soil(request):

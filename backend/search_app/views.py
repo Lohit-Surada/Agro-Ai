@@ -118,7 +118,12 @@ def _serialize_soil(doc: dict) -> dict:
     payload["soil_name"] = _as_text(doc.get("soil_name"))
     payload["description"] = _as_text(doc.get("description"))
     payload["soil_type"] = _as_text(doc.get("soil_type"))
+    payload["texture"] = _as_text(doc.get("texture"))
+    payload["region"] = _as_text(doc.get("region"))
     payload["ph_level"] = _as_text(doc.get("ph_level") or doc.get("ph_range"))
+    payload["water_holding_capacity"] = _as_text(doc.get("water_holding_capacity"))
+    payload["rainfall"] = _as_text(doc.get("rainfall"))
+    payload["drainage"] = _as_text(doc.get("drainage"))
     nutrient_content = doc.get("nutrient_content")
     if not isinstance(nutrient_content, dict):
         nutrient_content = doc.get("nutrients", {}) if isinstance(doc.get("nutrients"), dict) else {}
@@ -351,7 +356,12 @@ def add_soil(request):
         "soil_name": soil_name,
         "description": _as_text(data.get("description", "")),
         "soil_type": _as_text(data.get("soil_type", "")),
+        "texture": _as_text(data.get("texture", "")),
+        "region": _as_text(data.get("region", "")),
         "ph_level": _as_text(data.get("ph_level", "")),
+        "water_holding_capacity": _as_text(data.get("water_holding_capacity", "")),
+        "rainfall": _as_text(data.get("rainfall", "")),
+        "drainage": _as_text(data.get("drainage", "")),
         "nutrient_content": nutrient_content,
         "suitable_crops": _as_text(data.get("suitable_crops", "")),
         "created_by": admin_id,
@@ -388,8 +398,18 @@ def update_soil(request, soil_id):
         update["description"] = _as_text(data.get("description"))
     if "soil_type" in data:
         update["soil_type"] = _as_text(data.get("soil_type"))
+    if "texture" in data:
+        update["texture"] = _as_text(data.get("texture"))
+    if "region" in data:
+        update["region"] = _as_text(data.get("region"))
     if "ph_level" in data:
         update["ph_level"] = _as_text(data.get("ph_level"))
+    if "water_holding_capacity" in data:
+        update["water_holding_capacity"] = _as_text(data.get("water_holding_capacity"))
+    if "rainfall" in data:
+        update["rainfall"] = _as_text(data.get("rainfall"))
+    if "drainage" in data:
+        update["drainage"] = _as_text(data.get("drainage"))
     if "nutrient_content" in data:
         nutrient_content = _parse_json_field(data.get("nutrient_content"), {})
         if not isinstance(nutrient_content, dict):

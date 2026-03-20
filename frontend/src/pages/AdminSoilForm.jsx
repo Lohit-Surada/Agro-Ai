@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useId } from "react";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminSoils.css";
 
@@ -11,7 +12,12 @@ const createEmptyForm = () => ({
   soil_name: "",
   description: "",
   soil_type: "",
+  texture: "",
+  region: "",
   ph_level: "",
+  water_holding_capacity: "",
+  rainfall: "",
+  drainage: "",
   nutrient_content: {
     nitrogen: "",
     phosphorus: "",
@@ -33,6 +39,7 @@ function AdminSoilForm() {
   const { soilId } = useParams();
   const navigate = useNavigate();
   const isEdit = Boolean(soilId);
+  const soilImageInputId = useId();
 
   const [form, setForm] = useState(createEmptyForm());
   const [previewUrl, setPreviewUrl] = useState("");
@@ -62,7 +69,12 @@ function AdminSoilForm() {
           soil_name: soil.soil_name || "",
           description: soil.description || "",
           soil_type: soil.soil_type || "",
+          texture: soil.texture || "",
+          region: soil.region || "",
           ph_level: soil.ph_level || "",
+          water_holding_capacity: soil.water_holding_capacity || "",
+          rainfall: soil.rainfall || "",
+          drainage: soil.drainage || "",
           nutrient_content: {
             nitrogen: soil.nutrient_content?.nitrogen || "",
             phosphorus: soil.nutrient_content?.phosphorus || "",
@@ -93,9 +105,6 @@ function AdminSoilForm() {
 
   const handleNutrientChange = (event) => {
     const { name, value } = event.target;
-    if (value !== "" && !/^\d*\.?\d*$/.test(value)) {
-      return;
-    }
     setForm((prev) => ({
       ...prev,
       nutrient_content: {
@@ -126,7 +135,12 @@ function AdminSoilForm() {
     payload.append("soil_name", form.soil_name);
     payload.append("description", form.description);
     payload.append("soil_type", form.soil_type);
+    payload.append("texture", form.texture);
+    payload.append("region", form.region);
     payload.append("ph_level", form.ph_level);
+    payload.append("water_holding_capacity", form.water_holding_capacity);
+    payload.append("rainfall", form.rainfall);
+    payload.append("drainage", form.drainage);
     payload.append("nutrient_content", JSON.stringify(form.nutrient_content));
     payload.append("suitable_crops", form.suitable_crops);
     if (form.image) payload.append("image", form.image);
@@ -176,20 +190,24 @@ function AdminSoilForm() {
             </label>
 
             <label>
-              Description
-              <textarea name="description" rows="5" value={form.description} onChange={handleChange} />
+              Texture
+              <select name="texture" value={form.texture} onChange={handleChange}>
+                <option value="">Select texture</option>
+                <option value="Sandy">Sandy</option>
+                <option value="Loamy">Loamy</option>
+                <option value="Clayey">Clayey</option>
+                <option value="Silty">Silty</option>
+              </select>
             </label>
 
             <label>
-              pH Level
+              pH Level (0-14)
               <input type="text" inputMode="decimal" name="ph_level" value={form.ph_level} onChange={handleChange} />
             </label>
 
             <label>
-              Nitrogen
+              Nitrogen (kg/hectare)
               <input
-                type="text"
-                inputMode="decimal"
                 name="nitrogen"
                 value={form.nutrient_content.nitrogen}
                 onChange={handleNutrientChange}
@@ -197,10 +215,8 @@ function AdminSoilForm() {
             </label>
 
             <label>
-              Phosphorus
+              Phosphorus (kg/hectare)
               <input
-                type="text"
-                inputMode="decimal"
                 name="phosphorus"
                 value={form.nutrient_content.phosphorus}
                 onChange={handleNutrientChange}
@@ -208,10 +224,8 @@ function AdminSoilForm() {
             </label>
 
             <label>
-              Potassium
+              Potassium (kg/hectare)
               <input
-                type="text"
-                inputMode="decimal"
                 name="potassium"
                 value={form.nutrient_content.potassium}
                 onChange={handleNutrientChange}
@@ -219,17 +233,64 @@ function AdminSoilForm() {
             </label>
 
             <label>
+              Water Holding Capacity
+              <select name="water_holding_capacity" value={form.water_holding_capacity} onChange={handleChange}>
+                <option value="">Select water holding capacity</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </label>
+
+            <label>
+              Drainage
+              <select name="drainage" value={form.drainage} onChange={handleChange}>
+                <option value="">Select drainage</option>
+                <option value="Poor">Poor</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Good">Good</option>
+              </select>
+            </label>
+
+            <label>
+              Rainfall (in mm)
+              <input name="rainfall" value={form.rainfall} onChange={handleChange} />
+            </label>
+
+            <label>
               Suitable Crops
               <input name="suitable_crops" value={form.suitable_crops} onChange={handleChange} />
             </label>
+
+            <label>
+              Region
+              <input name="region" value={form.region} onChange={handleChange} />
+            </label>
+
+            <label>
+              Description
+              <textarea name="description" rows="5" value={form.description} onChange={handleChange} />
+            </label>
           </div>
 
-          <label className="file-field">
-            Soil Image
-            <input type="file" name="image" accept="image/*" onChange={handleFileChange} />
-          </label>
-
-          {previewUrl && <img src={previewUrl} alt="preview" className="form-preview" />}
+          <div className="soil-image-upload">
+            <input
+              id={soilImageInputId}
+              className="soil-image-input"
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+            <label htmlFor={soilImageInputId} className="soil-image-trigger">
+              {previewUrl ? "Change Soil Image" : "Upload Soil Image"}
+            </label>
+            {previewUrl && (
+              <div className="soil-image-preview-card">
+                <img src={previewUrl} alt="Selected soil" className="form-preview" />
+              </div>
+            )}
+          </div>
 
           <div className="soil-form-actions">
             <button className="primary-btn form-submit" type="submit" disabled={saving}>

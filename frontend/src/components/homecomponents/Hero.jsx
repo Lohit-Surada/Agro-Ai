@@ -98,7 +98,7 @@ const Hero = () => {
                 </div>
                 <div className="hero-stat-sep" />
                 <div className="hero-stat-item">
-                  <span className="hero-stat-num">500+</span>
+                  <span className="hero-stat-num">20+</span>
                   <span className="hero-stat-lbl">Crop Varieties</span>
                 </div>
                 <div className="hero-stat-sep" />
