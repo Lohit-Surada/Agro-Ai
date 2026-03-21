@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminCrops.css";
 
-const BACKEND_ORIGIN = "http://localhost:8000";
+const BACKEND_ORIGIN = "https://agro-aip-10.onrender.com";
 
 const createEmptyForm = () => ({
   image: null,
@@ -42,7 +42,7 @@ function AdminCropForm() {
   const API = useMemo(
     () =>
       axios.create({
-        baseURL: `http://localhost:8000/api/search`,
+        baseURL: `https://agro-aip-10.onrender.com/api/search`,
         headers: { Authorization: `Bearer ${token}` },
       }),
     [token]

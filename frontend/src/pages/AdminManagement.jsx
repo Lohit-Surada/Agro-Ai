@@ -15,7 +15,7 @@ const AdminManagement = () => {
 
   const fetchAdmins = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/auth/admins/`, { headers });
+      const response = await axios.get(`https://agro-aip-10.onrender.com/api/auth/admins/`, { headers });
       setAdmins(response.data?.admins || []);
       setError("");
     } catch (err) {
@@ -31,7 +31,7 @@ const AdminManagement = () => {
   const handleCreate = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:8000/api/auth/admins/create/`, formData, { headers });
+      const response = await axios.post(`https://agro-aip-10.onrender.com/api/auth/admins/create/`, formData, { headers });
       setAdmins((prev) => [...prev, response.data.admin]);
       setFormData({ name: "", email: "", password: "" });
       setError("");
@@ -42,7 +42,7 @@ const AdminManagement = () => {
 
   const handleDelete = async (username) => {
     try {
-      await axios.delete(`http://localhost:8000/api/auth/admins/${username}/`, { headers });
+      await axios.delete(`https://agro-aip-10.onrender.com/api/auth/admins/${username}/`, { headers });
       setAdmins((prev) => prev.filter((admin) => admin.username !== username));
     } catch (err) {
       setError(err.response?.data?.error || "Failed to delete admin");

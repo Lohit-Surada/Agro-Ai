@@ -40,7 +40,7 @@ const AdminRecoverySetup = () => {
     try {
       setLoading(true);
       setError("");
-      const response = await axios.post(`http://localhost:8000/api/auth/admin/recovery-setup/`, {
+      const response = await axios.post(`https://agro-aip-10.onrender.com/api/auth/admin/recovery-setup/`, {
         setup_token: setupToken,
         ...formData,
       });

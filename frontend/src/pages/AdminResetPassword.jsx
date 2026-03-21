@@ -43,7 +43,7 @@ const AdminResetPassword = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:8000/api/auth/admin/reset-password/", {
+      const response = await axios.post("https://agro-aip-10.onrender.com/api/auth/admin/reset-password/", {
         reset_token: resetToken,
         new_password: formData.new_password,
       });

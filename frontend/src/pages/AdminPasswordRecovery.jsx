@@ -56,7 +56,7 @@ const AdminPasswordRecovery = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/api/auth/admin/verify-recovery/", {
+      const response = await axios.post("https://agro-aip-10.onrender.com/api/auth/admin/verify-recovery/", {
         username,
         ...formData,
       });

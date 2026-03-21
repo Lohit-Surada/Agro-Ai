@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate, useLocation, useNavigationType } from "react-router-dom";
 import "../styles/public/SoilsList.css";
 
-const BACKEND = "http://localhost:8000";
+const BACKEND = "https://agro-aip-10.onrender.com";
 
 const toImageUrl = (path) => {
   if (!path) return "";
