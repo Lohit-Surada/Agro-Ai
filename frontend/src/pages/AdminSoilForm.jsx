@@ -5,7 +5,7 @@ import { useId } from "react";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminSoils.css";
 
-const BACKEND_ORIGIN = "https://agro-aip-10.onrender.com";
+const BACKEND_ORIGIN = "http://localhost:8000";
 
 const createEmptyForm = () => ({
   image: null,
@@ -202,7 +202,7 @@ function AdminSoilForm() {
 
             <label>
               pH Level (0-14)
-              <input name="ph_level" value={form.ph_level} onChange={handleChange} />
+              <input type="text" name="ph_level" value={form.ph_level} onChange={handleChange} />
             </label>
 
             <label>

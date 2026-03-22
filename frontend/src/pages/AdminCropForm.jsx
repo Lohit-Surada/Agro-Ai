@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminCrops.css";
 
-const BACKEND_ORIGIN = "https://agro-aip-10.onrender.com";
+const BACKEND_ORIGIN = "http://localhost:8000";
 
 const createEmptyForm = () => ({
   image: null,
@@ -42,7 +42,7 @@ function AdminCropForm() {
   const API = useMemo(
     () =>
       axios.create({
-        baseURL: `https://agro-aip-10.onrender.com/api/search`,
+        baseURL: `http://localhost:8000/api/search`,
         headers: { Authorization: `Bearer ${token}` },
       }),
     [token]
@@ -185,6 +185,7 @@ function AdminCropForm() {
             <label>
               Crop Duration (Days)
               <input
+                type="text"
                 name="crop_duration_days"
                 value={form.crop_duration_days}
                 onChange={handleChange}
@@ -199,6 +200,7 @@ function AdminCropForm() {
             <label>
               Temperature (Celsius)
               <input
+                type="text"
                 name="temperature_celsius"
                 value={form.temperature_celsius}
                 onChange={handleChange}
@@ -207,17 +209,17 @@ function AdminCropForm() {
 
             <label>
               pH Range
-              <input name="ph_range" value={form.ph_range} onChange={handleChange} />
+              <input type="text" name="ph_range" value={form.ph_range} onChange={handleChange} />
             </label>
 
             <label>
               Humidity Percent
-              <input name="humidity_percent" value={form.humidity_percent} onChange={handleChange} />
+              <input type="text" name="humidity_percent" value={form.humidity_percent} onChange={handleChange} />
             </label>
 
             <label>
               Rainfall (mm)
-              <input name="rainfall_mm" value={form.rainfall_mm} onChange={handleChange} />
+              <input type="text" name="rainfall_mm" value={form.rainfall_mm} onChange={handleChange} />
             </label>
           </div>
 

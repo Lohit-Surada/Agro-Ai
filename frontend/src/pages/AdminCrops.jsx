@@ -4,7 +4,7 @@ import { useNavigate, useLocation, useNavigationType } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminCrops.css";
 
-const BACKEND_ORIGIN = "https://agro-aip-10.onrender.com";
+const BACKEND_ORIGIN = "http://localhost:8000";
 
 const toImageUrl = (path) => {
   if (!path) return "";
@@ -36,7 +36,7 @@ function AdminCrops() {
   const API = useMemo(
     () =>
       axios.create({
-        baseURL: `https://agro-aip-10.onrender.com/api/search`,
+        baseURL: `http://localhost:8000/api/search`,
         headers: { Authorization: `Bearer ${token}` },
       }),
     [token]
