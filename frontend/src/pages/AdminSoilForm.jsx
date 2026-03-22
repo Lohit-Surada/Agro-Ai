@@ -202,7 +202,7 @@ function AdminSoilForm() {
 
             <label>
               pH Level (0-14)
-              <input type="text" inputMode="decimal" name="ph_level" value={form.ph_level} onChange={handleChange} />
+              <input name="ph_level" value={form.ph_level} onChange={handleChange} />
             </label>
 
             <label>

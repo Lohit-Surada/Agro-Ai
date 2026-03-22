@@ -185,8 +185,6 @@ function AdminCropForm() {
             <label>
               Crop Duration (Days)
               <input
-                type="text"
-                inputMode="numeric"
                 name="crop_duration_days"
                 value={form.crop_duration_days}
                 onChange={handleChange}
@@ -201,8 +199,6 @@ function AdminCropForm() {
             <label>
               Temperature (Celsius)
               <input
-                type="text"
-                inputMode="decimal"
                 name="temperature_celsius"
                 value={form.temperature_celsius}
                 onChange={handleChange}
@@ -211,17 +207,17 @@ function AdminCropForm() {
 
             <label>
               pH Range
-              <input type="text" inputMode="decimal" name="ph_range" value={form.ph_range} onChange={handleChange} />
+              <input name="ph_range" value={form.ph_range} onChange={handleChange} />
             </label>
 
             <label>
               Humidity Percent
-              <input type="text" inputMode="decimal" name="humidity_percent" value={form.humidity_percent} onChange={handleChange} />
+              <input name="humidity_percent" value={form.humidity_percent} onChange={handleChange} />
             </label>
 
             <label>
               Rainfall (mm)
-              <input type="text" inputMode="decimal" name="rainfall_mm" value={form.rainfall_mm} onChange={handleChange} />
+              <input name="rainfall_mm" value={form.rainfall_mm} onChange={handleChange} />
             </label>
           </div>
 
