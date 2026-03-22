@@ -15,7 +15,7 @@ function AdminUsers() {
     if (token && canManageUsers) {
       const fetchUsers = async () => {
         try {
-          const res = await axios.get(`http://localhost:8000/api/auth/users/`, {
+          const res = await axios.get(`https://agro-aip-10.onrender.com/api/auth/users/`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setUsers(res.data.users);
@@ -30,7 +30,7 @@ function AdminUsers() {
 
   const handleDelete = async (username) => {
     try {
-      await axios.delete(`http://localhost:8000/api/auth/users/${encodeURIComponent(username)}/`, {
+      await axios.delete(`https://agro-aip-10.onrender.com/api/auth/users/${encodeURIComponent(username)}/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers((prev) => prev.filter((u) => u.username !== username));

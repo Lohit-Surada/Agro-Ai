@@ -5,7 +5,7 @@ import { useId } from "react";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/home/AdminSoils.css";
 
-const BACKEND_ORIGIN = "http://localhost:8000";
+const BACKEND_ORIGIN = "https://agro-aip-10.onrender.com";
 
 const createEmptyForm = () => ({
   image: null,
