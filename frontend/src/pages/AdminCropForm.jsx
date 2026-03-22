@@ -82,20 +82,6 @@ function AdminCropForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    const decimalFields = new Set([
-      "temperature_celsius",
-      "ph_range",
-      "humidity_percent",
-      "rainfall_mm",
-    ]);
-
-    if (name === "crop_duration_days" && value !== "" && !/^\d+$/.test(value)) {
-      return;
-    }
-    if (decimalFields.has(name) && value !== "" && !/^\d*\.?\d*$/.test(value)) {
-      return;
-    }
-
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -120,7 +106,7 @@ function AdminCropForm() {
     payload.append("crop_name", form.crop_name);
     payload.append("description", form.description);
     payload.append("season", form.season);
-    payload.append("crop_duration_days", String(form.crop_duration_days || 0));
+    payload.append("crop_duration_days", form.crop_duration_days);
     payload.append("soil_type", form.soil_type);
     payload.append("temperature_celsius", form.temperature_celsius);
     payload.append("ph_range", form.ph_range);
@@ -182,14 +168,11 @@ function AdminCropForm() {
               <input name="season" value={form.season} onChange={handleChange} />
             </label>
 
+            
+
             <label>
               Crop Duration (Days)
-              <input
-                type="text"
-                name="crop_duration_days"
-                value={form.crop_duration_days}
-                onChange={handleChange}
-              />
+              <input name="crop_duration_days" value={form.crop_duration_days} onChange={handleChange} required />
             </label>
 
             <label>
@@ -199,27 +182,24 @@ function AdminCropForm() {
 
             <label>
               Temperature (Celsius)
-              <input
-                type="text"
-                name="temperature_celsius"
-                value={form.temperature_celsius}
-                onChange={handleChange}
-              />
+              <input name="temperature_celsius" value={form.temperature_celsius} onChange={handleChange} />
             </label>
 
             <label>
               pH Range
-              <input type="text" name="ph_range" value={form.ph_range} onChange={handleChange} />
+              <input name="ph_range" value={form.ph_range} onChange={handleChange} />
             </label>
+
+          
 
             <label>
               Humidity Percent
-              <input type="text" name="humidity_percent" value={form.humidity_percent} onChange={handleChange} />
+              <input  name="humidity_percent" value={form.humidity_percent} onChange={handleChange} />
             </label>
 
             <label>
               Rainfall (mm)
-              <input type="text" name="rainfall_mm" value={form.rainfall_mm} onChange={handleChange} />
+              <input  name="rainfall_mm" value={form.rainfall_mm} onChange={handleChange} />
             </label>
           </div>
 

@@ -114,7 +114,7 @@ function AdminCropDetails() {
                 <p className="info-value">{toDisplayValue(crop.rainfall_mm)}</p>
               </div>
               <div className="info-row">
-                <p className="info-label">Duration (Days)</p>
+                <p className="info-label">Crop Duration (Days)</p>
                 <p className="info-value">{toDisplayValue(crop.crop_duration_days)}</p>
               </div>
               <div className="info-row info-row-full">

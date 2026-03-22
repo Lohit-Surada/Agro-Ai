@@ -15,6 +15,7 @@ const createEmptyForm = () => ({
   texture: "",
   region: "",
   ph_level: "",
+  text_ph: "",
   water_holding_capacity: "",
   rainfall: "",
   drainage: "",
@@ -72,6 +73,7 @@ function AdminSoilForm() {
           texture: soil.texture || "",
           region: soil.region || "",
           ph_level: soil.ph_level || "",
+          text_ph: soil.ph_level || "",
           water_holding_capacity: soil.water_holding_capacity || "",
           rainfall: soil.rainfall || "",
           drainage: soil.drainage || "",
@@ -97,9 +99,6 @@ function AdminSoilForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    if (name === "ph_level" && value !== "" && !/^\d*\.?\d*$/.test(value)) {
-      return;
-    }
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -137,7 +136,7 @@ function AdminSoilForm() {
     payload.append("soil_type", form.soil_type);
     payload.append("texture", form.texture);
     payload.append("region", form.region);
-    payload.append("ph_level", form.ph_level);
+    payload.append("ph_level", form.text_ph);
     payload.append("water_holding_capacity", form.water_holding_capacity);
     payload.append("rainfall", form.rainfall);
     payload.append("drainage", form.drainage);
@@ -200,10 +199,14 @@ function AdminSoilForm() {
               </select>
             </label>
 
-            <label>
-              pH Level (0-14)
-              <input type="text" name="ph_level" value={form.ph_level} onChange={handleChange} />
-            </label>
+            
+
+            
+
+             <label htmlFor="">
+              pH_level(0-14)
+              <input name="text_ph" value={form.text_ph} onChange={handleChange} />
+             </label>
 
             <label>
               Nitrogen (kg/hectare)

@@ -73,7 +73,7 @@ const CropDetails = () => {
               <div className="info-row"><p className="info-label">pH Range</p><p className="info-value">{asDisplay(crop.ph_range)}</p></div>
               <div className="info-row"><p className="info-label">Humidity (%)</p><p className="info-value">{asDisplay(crop.humidity_percent)}</p></div>
               <div className="info-row"><p className="info-label">Rainfall (mm)</p><p className="info-value">{asDisplay(crop.rainfall_mm)}</p></div>
-              <div className="info-row"><p className="info-label">Duration (Days)</p><p className="info-value">{asDisplay(crop.crop_duration_days)}</p></div>
+              <div className="info-row"><p className="info-label">Crop Duration (Days)</p><p className="info-value">{asDisplay(crop.crop_duration_days)}</p></div>
               <div className="info-row info-row-full"><p className="info-label">Description</p><p className="info-value">{asDisplay(crop.description)}</p></div>
             </div>
           </div>
