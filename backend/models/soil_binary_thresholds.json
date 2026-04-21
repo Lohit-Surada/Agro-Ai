@@ -1,0 +1,6 @@
+{
+  "soil_threshold": 0.4,
+  "non_soil_threshold": 0.2,
+  "best_val_f1": 0.5,
+  "notes": "Class index 1 is treated as soil."
+}

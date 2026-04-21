@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const AuthContext = createContext();
 
-const AUTH_API = `http://localhost:8000/api/auth`;
+const AUTH_API = `https://agro-aip-10.onrender.com/api/auth`;
 const emptyAuth = { token: null, role: null, username: null };
 const AUTH_STORAGE_KEY = "agroai_auth_session";
 
