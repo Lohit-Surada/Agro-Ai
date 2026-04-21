@@ -21,6 +21,7 @@ import CropsList from "../pages/CropsList";
 import SoilsList from "../pages/SoilsList";
 import CropDetails from "../pages/CropDetails";
 import SoilDetails from "../pages/SoilDetails";
+import About from "../pages/About";
 
 const AppRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const AppRoutes = () => {
       <Route path="/soils" element={<SoilsList />} />
       <Route path="/crop/:cropId" element={<CropDetails />} />
       <Route path="/soil/:soilId" element={<SoilDetails />} />
+      <Route path="/about" element={<About />} />
       <Route path="/admin/recovery-setup" element={<AdminRecoverySetup />} />
       <Route path="/admin/resetpassword" element={<AdminResetPassword />} />
       <Route path="/admin/passwordrecovery" element={<AdminPasswordRecovery />} />
