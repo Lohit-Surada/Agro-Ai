@@ -4,10 +4,15 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .utils.predict_crop import predict_crop
+from authentication.permissions import decode_token_from_request
 
 
 @api_view(['POST'])
 def crop_recommendation_api(request):
+    allowed, decoded_or_response = decode_token_from_request(request)
+    if not allowed:
+        return decoded_or_response
+
     try:
         data = request.data
 

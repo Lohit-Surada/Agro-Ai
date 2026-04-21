@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import "../styles/crop/CropRecommendation.css";
 import { usePopup } from "../context/PopupContext";
+import { AuthContext } from "../context/AuthContext";
 
 function CropRecommendation() {
   const { showPopup } = usePopup();
+  const { auth } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     N: "",
     P: "",
@@ -17,7 +19,9 @@ function CropRecommendation() {
 
   const [result, setResult] = useState("");
   const API = axios.create({
-    baseURL: `https://agro-aip-10.onrender.com/api`,
+    baseURL: `http://localhost:8000/api`,
+    withCredentials: true,
+    headers: auth?.token ? { Authorization: `Bearer ${auth.token}` } : {},
   });
 
   const handleChange = (e) => {

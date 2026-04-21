@@ -44,7 +44,7 @@ const AuthForm = ({ type }) => {
     }
 
     setError("");
-    const baseURL = `https://agro-aip-10.onrender.com/api/auth`;
+    const baseURL = `http://localhost:8000/api/auth`;
 
     try {
       let response;
@@ -55,6 +55,8 @@ const AuthForm = ({ type }) => {
           name: formData.name,
           email: formData.email,
           password: formData.password,
+        }, {
+          withCredentials: true,
         });
         if (response.data.requires_recovery_setup) {
           navigate("/admin/recovery-setup", {
@@ -77,6 +79,8 @@ const AuthForm = ({ type }) => {
         response = await axios.post(endpoint, {
           username: formData.username,
           password: formData.password,
+        }, {
+          withCredentials: true,
         });
       }
 

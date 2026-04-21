@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/soil/SoilDetection.css";
 import { usePopup } from "../context/PopupContext";
+import { AuthContext } from "../context/AuthContext";
 
 function SoilDetection() {
   const { showPopup } = usePopup();
   const navigate = useNavigate();
+  const { auth } = useContext(AuthContext);
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState(null);
@@ -28,13 +30,18 @@ function SoilDetection() {
 
     try {
       setIsPredicting(true);
-      const response = await axios.post(`https://agro-aip-10.onrender.com/api/soil/detect/`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const response = await axios.post(`http://localhost:8000/api/soil/detect/`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          ...(auth?.token ? { Authorization: `Bearer ${auth.token}` } : {}),
+        },
+        withCredentials: true,
       });
       setResult(response.data);
     } catch (error) {
       console.error(error);
-      showPopup("Error detecting soil", "error");
+      const message = error?.response?.data?.error || "Error detecting soil";
+      showPopup(message, "error");
     } finally {
       setIsPredicting(false);
     }

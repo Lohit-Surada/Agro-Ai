@@ -18,9 +18,8 @@ const ProtectedRoute = ({ children, allowedRoles = null }) => {
 
     if (!isLoggedIn) {
       showPopup("Login required", "alert");
-      navigate("/auth?type=login", {
+      navigate("/", {
         replace: true,
-        state: { from: location.pathname },
       });
       return;
     }

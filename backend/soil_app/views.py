@@ -10,12 +10,16 @@ from django.conf import settings
 from .model_loader import model, soil_classes
 from .utils import preprocess_image
 from models.mongo import soils_collection
+from authentication.permissions import decode_token_from_request
 
 
 UPLOAD_DIR = os.path.join(settings.MEDIA_ROOT, "soil_detect_images")
 
 @api_view(['POST'])
 def detect_soil(request):
+    allowed, decoded_or_response = decode_token_from_request(request)
+    if not allowed:
+        return decoded_or_response
 
     if 'image' not in request.FILES:
         return Response({"error": "No image uploaded"}, status=400)
