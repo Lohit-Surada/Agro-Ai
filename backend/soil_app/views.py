@@ -62,7 +62,7 @@ def detect_soil(request):
         for i in top3_indices
     ]
 
-    # Fetch recommended crops from MongoDB soils collection
+    
     recommended_crops = []
     try:
         soil_doc = soils_collection.find_one({"soil_name": {"$regex": f"^{soil_type}$", "$options": "i"}})
@@ -73,7 +73,7 @@ def detect_soil(request):
             elif isinstance(raw, str) and raw.strip():
                 recommended_crops = [c.strip() for c in raw.split(",") if c.strip()]
     except Exception:
-        pass  # Non-critical; return empty list if DB unavailable
+        pass  
 
     return Response({
         "soil_type": soil_type,

@@ -51,7 +51,7 @@ function SoilDetection() {
     <div className="soil-detection-page">
       <div className="soil-detection-card">
 
-        {/* ── Hero Header ── */}
+       
         <div className="soil-hero">
           <div className="soil-hero-badge"> AI Powered</div>
           <h1 className="soil-hero-title"> Soil   Detection</h1>
@@ -60,12 +60,12 @@ function SoilDetection() {
           </p>
         </div>
 
-        {/* ── Card Body ── */}
+        
         <div className="soil-card-body">
 
           <form className="soil-detection-form" onSubmit={handleUpload}>
 
-            {/* Single input — browser natively shows camera+gallery on mobile, file picker on desktop */}
+           
             <label htmlFor="soil-image-input" className="file-upload-label">
               <div className="upload-icon-wrap">📷</div>
               <span className="upload-main-text">Click to choose a soil image</span>
@@ -79,12 +79,12 @@ function SoilDetection() {
               onChange={handleFileChange}
             />
 
-            {/* Selected file indicator */}
+           
             {image && (
               <p className="selected-file">✅ {image.name}</p>
             )}
 
-            {/* Preview */}
+          
             {preview && (
               <div className="preview-wrap">
                 <img src={preview} alt="Uploaded Soil" className="preview-image" />
@@ -96,7 +96,7 @@ function SoilDetection() {
             </button>
           </form>
 
-          {/* ── Results ── */}
+        
           {result && (
             <div className="soil-result-card">
               <div className="soil-result-header">
@@ -105,7 +105,6 @@ function SoilDetection() {
               </div>
 
               <div className="soil-result-body">
-                {/* 1. Detected type pill */}
                 <div className="soil-detected-pill">
                   <div>
                     <div className="soil-detected-label">Detected Soil Type</div>
@@ -113,7 +112,7 @@ function SoilDetection() {
                   </div>
                 </div>
 
-                {/* 2. Recommended crops */}
+                
                 {result.recommended_crops && result.recommended_crops.length > 0 && (
                   <div className="soil-crops-section">
                     <p className="soil-crops-title">🌾 Recommended Crops</p>
@@ -125,7 +124,7 @@ function SoilDetection() {
                   </div>
                 )}
 
-                {/* 3. Advanced Crop Recommendation button */}
+                {}
                 <button
                   type="button"
                   className="soil-adv-btn"
@@ -134,7 +133,7 @@ function SoilDetection() {
                   🌿 Advanced Crop Recommendation
                 </button>
 
-                {/* 4. Confidence table */}
+                {}
                 {result.top3 && (
                   <div className="soil-top3">
                     <p className="soil-top3-title">📊 Prediction Confidence</p>
