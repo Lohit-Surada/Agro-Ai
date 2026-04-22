@@ -46,7 +46,7 @@ const SoilsList = () => {
       {/* ── HERO BANNER (full-width, outside sl-page) ── */}
       <div className="sl-hero">
         <span className="sl-hero-eyebrow">AgroAI Database</span>
-        <h1 className="sl-hero-title">🌍 Soil Database</h1>
+        <h1 className="sl-hero-title">🌍 Soil Library</h1>
         <p className="sl-hero-sub">
           Explore all {loading ? "…" : soils.length} soil types our deep-learning model can detect — pH levels, nutrient content, and recommended crops.
         </p>
