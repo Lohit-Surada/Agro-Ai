@@ -8,7 +8,7 @@ import imgIrrigation   from "../../assets/Spinner/irrigation.jpg";
 import imgWeeding      from "../../assets/Spinner/weeding.jpg";
 import imgHarvesting   from "../../assets/Spinner/Harvesting.jpg";
 import imgThreshing    from "../../assets/Spinner/Threshing.jpg";
-import imgStorage      from "../../assets/Spinner/Storage-of-Crops.webp";
+import imgStorage      from "../../assets/Spinner/Storage-of-crops.png";
 
 const WHEEL_ITEMS = [
   {
