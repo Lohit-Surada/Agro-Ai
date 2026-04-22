@@ -1,10 +1,10 @@
 ﻿import React, { useEffect, useMemo, useRef, useState } from "react";
 import "../../styles/home/SpinnerWheel.css";
 import geminiImg        from "../../assets/Gemini_Generated_Image_5dfnce5dfnce5dfn.png";
-import imgSoil         from "../../assets/Spinner/Preparation of Soil.webp";
-import imgSowing       from "../../assets/Spinner/Sowing.jpg";
+import imgSoil         from "../../assets/Spinner/Preparation of soil.jpg";
+import imgSowing       from "../../assets/Spinner/Sowing.webp";
 import imgManure       from "../../assets/Spinner/Manure and Fertilizer.webp";
-import imgIrrigation   from "../../assets/Spinner/irrigation.jpg";
+import imgIrrigation   from "../../assets/Spinner/irrigation.avif";
 import imgWeeding      from "../../assets/Spinner/weeding.jpg";
 import imgHarvesting   from "../../assets/Spinner/Harvesting.jpg";
 import imgThreshing    from "../../assets/Spinner/Threshing.jpg";
