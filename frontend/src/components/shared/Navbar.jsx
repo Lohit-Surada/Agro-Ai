@@ -56,8 +56,8 @@ const Navbar = () => {
     <nav className="navbar">
       {/* ── Logo ─────────────────────────────── */}
       <Link to="/" className="navbar-logo">
-        <img src={logoImg} alt="AgroAI Logo" className="navbar-logo-img" />
-        <span>AgroAI</span>
+        <img src={logoImg} alt="Agro-Ai Logo" className="navbar-logo-img" />
+        <span>Agro-Ai</span>
       </Link>
 
       {/* ── Centre links + search ────────────── */}

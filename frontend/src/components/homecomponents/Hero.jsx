@@ -10,7 +10,7 @@ const Hero = () => {
   const navigate = useNavigate();
   const { auth } = useContext(AuthContext);
   const { showPopup } = usePopup();
-  const animatedWords = ["AgroAI", "AI Insights", "Smart Farming"];
+  const animatedWords = ["Agro-Ai", "AI Insights", "Smart Farming"];
   const [wordIndex, setWordIndex] = useState(0);
   const [typedText, setTypedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -81,7 +81,7 @@ const Hero = () => {
                   className="hero-highlight hero-typed-word hero-heading-line hero-heading-accent"
                   aria-label={animatedWords[wordIndex]}
                 >
-                  {typedText || "AgroAI"}
+                  {typedText || "Agro-Ai"}
                   <span className="hero-cursor" aria-hidden="true">|</span>
                 </span>
               </h1>
